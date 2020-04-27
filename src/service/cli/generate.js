@@ -64,7 +64,7 @@ const CATEGORIES = [
 const generateOffer = () => ({
   title: getRandomElement(TITLES),
   picture: `item${getRandomInt(1, 16)}.jpg`.replace(/m(\d)\./, `m0$1.`),
-  description: getRandomUniqueElements(DESCRIPTIONS, getRandomInt(1, 5)),
+  description: getRandomUniqueElements(DESCRIPTIONS, getRandomInt(1, 5)).join(`\n`),
   type: getRandomBoolean() ? OfferType.OFFER : OfferType.SALE,
   sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
   category: getRandomElement(CATEGORIES),
