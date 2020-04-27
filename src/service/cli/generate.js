@@ -26,7 +26,7 @@ const TITLES = [
 
 const DESCRIPTIONS = [
   `Товар в отличном состоянии.`,
-  `Пользовались бережно и только по большим праздникам.,`,
+  `Пользовались бережно и только по большим праздникам.`,
   `Продаю с болью в сердце...`,
   `Бонусом отдам все аксессуары.`,
   `Даю недельную гарантию.`,
@@ -39,7 +39,7 @@ const DESCRIPTIONS = [
   `Кажется, что это хрупкая вещь.`,
   `Мой дед не мог её сломать.`,
   `Кому нужен этот новый телефон, если тут такое...`,
-  `Не пытайтесь торговаться.Цену вещам я знаю.`,
+  `Не пытайтесь торговаться. Цену вещам я знаю.`,
 ];
 
 const OfferType = {
@@ -74,20 +74,20 @@ const generate = (count) => Array(count).fill(``).map(() => generateOffer());
 
 module.exports = {
   name: `--generate`,
-  run(arg, onComplite) {
+  run(onComplite, arg) {
     const [param] = arg;
     const offerCount = parseInt(param, 10) || DEFAULT_COUNT;
 
     if (offerCount > MAX_COUNT) {
-      console.log(ERROR_MESSAGE);
+      console.error(ERROR_MESSAGE);
       onComplite(false);
     } else {
       fs.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(offerCount)), (err) => {
         if (err) {
-          console.err(FileMessage.ERROR);
+          console.error(FileMessage.ERROR);
           onComplite(false);
         } else {
-          console.log(FileMessage.SUCCESS);
+          console.info(FileMessage.SUCCESS);
           onComplite(true);
         }
       });
