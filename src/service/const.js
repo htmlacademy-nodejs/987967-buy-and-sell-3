@@ -1,7 +1,9 @@
 'use strict';
 
-module.exports.ExitCode = {
-  SUCCESS: 0,
-  ERROR: 1,
+module.exports = {
+  ExitCode = {
+    SUCCESS: 0,
+    ERROR: 1,
+  }
 };
 

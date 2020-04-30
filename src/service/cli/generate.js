@@ -5,7 +5,7 @@ const fs = require(`fs`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
-const ERROR_MESSAGE = `Не больше 1000 объявлений`;
+const ERROR_MESSAGE = `Не больше ${MAX_COUNT} объявлений`;
 const MOCK_FILE_NAME = `mocks.json`;
 const FileMessage = {
   ERROR: `Can't write data to file...`,

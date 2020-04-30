@@ -6,41 +6,36 @@ const getRandomInt = (min, max) => {
 
   return Math.floor(Math.random() * (maxInt - minInt) + minInt);
 };
-module.exports.getRandomInt = getRandomInt;
 
-const getRandomElement = (array) => array[getRandomInt(0, array.length - 1)];
-module.exports.getRandomElement = getRandomElement;
+const getRandomElement = array => array[getRandomInt(0, array.length - 1)];
 
-module.exports.getRandomElements = (array, count) =>
-  new Array(count)
-    .fill(``)
-    .map(() => getRandomElement(array));
+const getRandomElements = (array, count) =>
+  new Array(count).map(() => getRandomElement(array));
 
 const removeElement = (array, index) => {
   const result = array.slice();
 
-  switch (true) {
-    case index === 0:
+  if (index >= array.length) {
+    return result
+  }
+
+  switch (index) {
+    case 0:
       result.shift();
       return result;
 
-    case index === array.length - 1:
+    case array.length - 1:
       result.pop();
       return result;
 
-    case index >= array.length:
-      return result;
-
     default:
-      return result.slice(0, index).concat(result.slice(index + 1, result.length));
+      return result.filter((it, i) => i !== index)
   }
 };
 
-module.exports.getRandomUniqueElements = (array, count) => {
+const getRandomUniqueElements = (array, count) => {
   let truncatedArray = array.slice();
-  return new Array(count)
-    .fill(``)
-    .map(() => {
+  return new Array(count).map(() => {
       const index = getRandomInt(0, truncatedArray.length - 1);
       const element = truncatedArray[index];
       truncatedArray = removeElement(truncatedArray, index);
@@ -49,4 +44,12 @@ module.exports.getRandomUniqueElements = (array, count) => {
     });
 };
 
-module.exports.getRandomBoolean = () => Math.random() > 0.5;
+const getRandomBoolean = () => Math.random() > 0.5;
+
+module.exports = {
+  getRandomInt: getRandomInt,
+  getRandomElement: getRandomElement,
+  getRandomElements: getRandomElements,
+  getRandomUniqueElements: getRandomUniqueElements,
+  getRandomBoolean: getRandomBoolean,
+}
