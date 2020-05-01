@@ -52,6 +52,16 @@ const SumRestrict = {
   MAX: 100000,
 };
 
+const DescriptionLength = {
+  MIN: 1,
+  MAX: 5,
+};
+
+const PictureNumber = {
+  MIN: 1,
+  MAX: 16,
+};
+
 const CATEGORIES = [
   `Книги`,
   `Разное`,
@@ -63,8 +73,8 @@ const CATEGORIES = [
 
 const generateOffer = () => ({
   title: getRandomElement(TITLES),
-  picture: `item${getRandomInt(1, 16)}.jpg`.replace(/m(\d)\./, `m0$1.`),
-  description: getRandomUniqueElements(DESCRIPTIONS, getRandomInt(1, 5)).join(`\n`),
+  picture: `item${getRandomInt(PictureNumber.MIN, PictureNumber.MAX)}.jpg`.replace(/m(\d)\./, `m0$1.`),
+  description: getRandomUniqueElements(DESCRIPTIONS, getRandomInt(DescriptionLength.MIN, DescriptionLength.MAX)).join(`\n`),
   type: getRandomBoolean() ? OfferType.OFFER : OfferType.SALE,
   sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
   category: getRandomElement(CATEGORIES),

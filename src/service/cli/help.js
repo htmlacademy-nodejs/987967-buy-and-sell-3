@@ -12,7 +12,7 @@ module.exports = {
     --version:            выводит номер версии
     --help:               печатает этот текст
     --generate <count>    формирует файл mocks.json`);
-    
+
     onComplite(true);
   }
 };

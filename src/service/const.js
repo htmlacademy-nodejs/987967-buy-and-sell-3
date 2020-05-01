@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  ExitCode = {
+  ExitCode: {
     SUCCESS: 0,
     ERROR: 1,
   }
