@@ -9,8 +9,8 @@ const USER_COMMAND_INDEX = 2;
 const userInputs = process.argv.slice(USER_COMMAND_INDEX);
 const [userCommand, ...commandArg] = userInputs;
 
-const commandExecuter = async (arg) => {
-  const command = Cli[userCommand] || Cli[DEFAULT_COMMAND];
+const executeCommand = async (commandName, arg) => {
+  const command = Cli[commandName] || Cli[DEFAULT_COMMAND];
   try {
     await command.run(arg);
     process.exit(ExitCode.SUCCESS);
@@ -19,4 +19,4 @@ const commandExecuter = async (arg) => {
   }
 };
 
-commandExecuter(commandArg);
+executeCommand(userCommand, commandArg);

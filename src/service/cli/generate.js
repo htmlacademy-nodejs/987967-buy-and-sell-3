@@ -1,6 +1,6 @@
 'use strict';
 
-const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement} = require(`../../utils`);
+const { getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement } = require(`../../utils`);
 const fs = require(`fs`);
 const chalk = require(`chalk`);
 
@@ -83,13 +83,13 @@ const generateOffer = () => ({
 
 const generate = (count) => Array(count).fill(``).map(() => generateOffer());
 
-const writeMockToFile = async (count) => {
+const createMockToFile = async (count) => {
   try {
     await fs.promises.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(count)));
     console.info(chalk.green(FileMessage.SUCCESS));
   } catch (err) {
     console.error(chalk.red(FileMessage.ERROR));
-    throw new Error(FileMessage.ERROR);
+    throw new Error(err);
   }
 };
 
@@ -102,8 +102,8 @@ module.exports = {
     if (offerCount > MAX_COUNT) {
       console.error(chalk.red(ERROR_MESSAGE));
       throw new Error(ERROR_MESSAGE);
-    } else {
-      await writeMockToFile(offerCount);
-    }
+    };
+
+    await createMockToFile(offerCount);
   }
 };
