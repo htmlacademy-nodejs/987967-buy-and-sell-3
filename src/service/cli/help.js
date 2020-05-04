@@ -1,9 +1,8 @@
 'use strict';
 
-module.exports = {
-  name: `--help`,
-  run(onComplite) {
-    console.info(`Программа запускает http-сервер и формирует файл с данными для API.
+const chalk = require(`chalk`);
+
+const MESSAGE = `Программа запускает http-сервер и формирует файл с данными для API.
 
     Гайд:
     service <command>
@@ -11,7 +10,12 @@ module.exports = {
     Команды:
     --version:            выводит номер версии
     --help:               печатает этот текст
-    --generate <count>    формирует файл mocks.json`);
+    --generate <count>    формирует файл mocks.json`;
+
+module.exports = {
+  name: `--help`,
+  run(onComplite) {
+    console.info(chalk.grey(MESSAGE));
 
     onComplite(true);
   }

@@ -2,6 +2,7 @@
 
 const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement} = require(`../../utils`);
 const fs = require(`fs`);
+const chalk = require(`chalk`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -94,10 +95,10 @@ module.exports = {
     } else {
       fs.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(offerCount)), (err) => {
         if (err) {
-          console.error(FileMessage.ERROR);
+          console.error(chalk.red(FileMessage.ERROR));
           onComplite(false);
         } else {
-          console.info(FileMessage.SUCCESS);
+          console.info(chalk.green(FileMessage.SUCCESS));
           onComplite(true);
         }
       });
