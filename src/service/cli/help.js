@@ -14,9 +14,7 @@ const MESSAGE = `Программа запускает http-сервер и фо
 
 module.exports = {
   name: `--help`,
-  run(onComplite) {
+  run() {
     console.info(chalk.grey(MESSAGE));
-
-    onComplite(true);
   }
 };

@@ -83,25 +83,27 @@ const generateOffer = () => ({
 
 const generate = (count) => Array(count).fill(``).map(() => generateOffer());
 
+const writeMockToFile = async (count) => {
+  try {
+    await fs.promises.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(count)));
+    console.info(chalk.green(FileMessage.SUCCESS));
+  } catch (err) {
+    console.error(chalk.red(FileMessage.ERROR));
+    throw new Error(FileMessage.ERROR);
+  }
+};
+
 module.exports = {
   name: `--generate`,
-  run(onComplite, arg) {
+  async run(arg) {
     const [param] = arg;
     const offerCount = parseInt(param, 10) || DEFAULT_COUNT;
 
     if (offerCount > MAX_COUNT) {
-      console.error(ERROR_MESSAGE);
-      onComplite(false);
+      console.error(chalk.red(ERROR_MESSAGE));
+      throw new Error(ERROR_MESSAGE);
     } else {
-      fs.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(offerCount)), (err) => {
-        if (err) {
-          console.error(chalk.red(FileMessage.ERROR));
-          onComplite(false);
-        } else {
-          console.info(chalk.green(FileMessage.SUCCESS));
-          onComplite(true);
-        }
-      });
+      await writeMockToFile(offerCount);
     }
   }
 };

@@ -5,8 +5,7 @@ const chalk = require(`chalk`);
 
 module.exports = {
   name: `--version`,
-  run(onComplite) {
+  run() {
     console.info(chalk.blue(packageJson.version));
-    onComplite(true);
   }
 };
