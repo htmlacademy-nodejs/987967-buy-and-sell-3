@@ -1,5 +1,8 @@
 'use strict';
 
+const fs = require(`fs`);
+const chalk = require(`chalk`);
+
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
   const maxInt = Math.floor(max);
@@ -27,10 +30,21 @@ const getRandomUniqueElements = (array, count) => {
 
 const getRandomBoolean = () => Math.random() > 0.5;
 
+const readContent = async (filename) => {
+  try {
+    const content = await fs.promises.readFile(filename, `utf-8`);
+    return content.split(`\r\n`);
+  } catch (err) {
+    console.error(chalk.red(err));
+    return [];
+  }
+};
+
 module.exports = {
   getRandomInt,
   getRandomElement,
   getRandomElements,
   getRandomUniqueElements,
   getRandomBoolean,
+  readContent,
 };
