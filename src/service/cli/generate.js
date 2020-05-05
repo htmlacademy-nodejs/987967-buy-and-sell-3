@@ -1,7 +1,8 @@
 'use strict';
 
-const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement} = require(`../../utils`);
+const { getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement } = require(`../../utils`);
 const fs = require(`fs`);
+const chalk = require(`chalk`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -82,25 +83,27 @@ const generateOffer = () => ({
 
 const generate = (count) => Array(count).fill(``).map(() => generateOffer());
 
+const createMockToFile = async (count) => {
+  try {
+    await fs.promises.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(count)));
+    console.info(chalk.green(FileMessage.SUCCESS));
+  } catch (err) {
+    console.error(chalk.red(FileMessage.ERROR));
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   name: `--generate`,
-  run(onComplite, arg) {
+  async run(arg) {
     const [param] = arg;
     const offerCount = parseInt(param, 10) || DEFAULT_COUNT;
 
     if (offerCount > MAX_COUNT) {
-      console.error(ERROR_MESSAGE);
-      onComplite(false);
-    } else {
-      fs.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(offerCount)), (err) => {
-        if (err) {
-          console.error(FileMessage.ERROR);
-          onComplite(false);
-        } else {
-          console.info(FileMessage.SUCCESS);
-          onComplite(true);
-        }
-      });
-    }
+      console.error(chalk.red(ERROR_MESSAGE));
+      throw new Error(ERROR_MESSAGE);
+    };
+
+    await createMockToFile(offerCount);
   }
 };
