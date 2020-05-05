@@ -3,6 +3,7 @@
 const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement, readContent} = require(`../../utils`);
 const fs = require(`fs`);
 const chalk = require(`chalk`);
+const { ExitCode } = require(`../const`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -62,7 +63,7 @@ const createMockFile = async (count) => {
     console.info(chalk.green(FileMessage.SUCCESS));
   } catch (err) {
     console.error(chalk.red(FileMessage.ERROR));
-    throw new Error(err);
+    return ExitCode.ERROR
   }
 };
 
@@ -74,9 +75,10 @@ module.exports = {
 
     if (offerCount > MAX_COUNT) {
       console.error(chalk.red(ERROR_MESSAGE));
-      throw new Error(ERROR_MESSAGE);
+      return ExitCode.ERROR
     }
 
     await createMockFile(offerCount);
+    return ExitCode.SUCCESS
   }
 };
