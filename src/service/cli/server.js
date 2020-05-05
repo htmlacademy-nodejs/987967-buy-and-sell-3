@@ -1,15 +1,49 @@
 'use strict';
 
 const chalk = require(`chalk`);
-const { createServer } = require(`http`);
-const { ExitCode } = require(`../const`);
+const { createServer, STATUS_CODES } = require(`http`);
+const { ExitCode, MOCK_FILE_NAME, HttpStatusCode } = require(`../const`);
+const fs = require(`fs`);
 
 const DEFAULT_PORT = 3000;
 
-const onClientConnect = (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World!!!');
+const sendResponse = (status, message, res) => {
+  const template = `
+    <!Doctype html>
+      <html lang="ru">
+      <head>
+        <title>With love from Node</title>
+      </head>
+      <body>${message}</body>
+    </html>`.trim();
+
+  res.statusCode = status;
+  res.writeHead(status, {
+    "content-type": `text/html; charset=utf-8`
+  });
+  res.end(template);
+}
+
+const onClientConnect = async (req, res) => {
+  switch (req.url) {
+    case `/`:
+      try {
+        const titles = JSON.parse(await fs.promises.readFile(`./${MOCK_FILE_NAME}`))
+          .map(it => it.title);
+        
+        const message = `<ul>${titles.map(it => `<li>${it}</li>`).join(`\n`)}</ul>`;
+
+        sendResponse(HttpStatusCode.OK, message, res);
+      } catch (err) {
+        sendResponse(HttpStatusCode.NOT_FOUND, STATUS_CODES[HttpStatusCode.NOT_FOUND], res)
+      }
+      break;
+
+    default:
+      sendResponse(HttpStatusCode.NOT_FOUND, STATUS_CODES[HttpStatusCode.NOT_FOUND], res)
+  }
+
+  sendResponse(200, req.url, res)
 }
 
 module.exports = {

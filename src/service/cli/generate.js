@@ -3,12 +3,11 @@
 const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement, readContent} = require(`../../utils`);
 const fs = require(`fs`);
 const chalk = require(`chalk`);
-const { ExitCode } = require(`../const`);
+const { ExitCode, MOCK_FILE_NAME } = require(`../const`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
 const ERROR_MESSAGE = `Не больше ${MAX_COUNT} объявлений`;
-const MOCK_FILE_NAME = `mocks.json`;
 const FileMessage = {
   ERROR: `Can't write data to file...`,
   SUCCESS: `Operation success. File created.`,
