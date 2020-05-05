@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/dijeth/987967-buy-and-sell-3#readme",
   "devDependencies": {
-    "axios": "0.19.2",
     "eslint": "6.8.0",
     "eslint-config-htmlacademy": "0.5.2"
   },
