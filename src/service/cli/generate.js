@@ -3,7 +3,7 @@
 const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement, readContent} = require(`../../utils`);
 const fs = require(`fs`);
 const chalk = require(`chalk`);
-const { ExitCode, MOCK_FILE_NAME } = require(`../const`);
+const {ExitCode, MOCK_FILE_NAME} = require(`../const`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -60,9 +60,10 @@ const createMockFile = async (count) => {
 
     await fs.promises.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(count, data)));
     console.info(chalk.green(FileMessage.SUCCESS));
+    return ExitCode.SUCCESS;
   } catch (err) {
     console.error(chalk.red(FileMessage.ERROR));
-    return ExitCode.ERROR
+    return ExitCode.ERROR;
   }
 };
 
@@ -74,10 +75,9 @@ module.exports = {
 
     if (offerCount > MAX_COUNT) {
       console.error(chalk.red(ERROR_MESSAGE));
-      return ExitCode.ERROR
+      return ExitCode.ERROR;
     }
 
-    await createMockFile(offerCount);
-    return ExitCode.SUCCESS
+    return await createMockFile(offerCount);
   }
 };
