@@ -1,8 +1,8 @@
 'use strict';
 
 const chalk = require(`chalk`);
-const { createServer, STATUS_CODES } = require(`http`);
-const { ExitCode, MOCK_FILE_NAME, HttpStatusCode } = require(`../const`);
+const {createServer, STATUS_CODES} = require(`http`);
+const {ExitCode, MOCK_FILE_NAME, HttpStatusCode} = require(`../const`);
 const fs = require(`fs`);
 
 const DEFAULT_PORT = 3000;
@@ -22,29 +22,29 @@ const sendResponse = (status, message, res) => {
     "content-type": `text/html; charset=utf-8`
   });
   res.end(template);
-}
+};
 
 const onClientConnect = async (req, res) => {
   switch (req.url) {
     case `/`:
       try {
         const titles = JSON.parse(await fs.promises.readFile(`./${MOCK_FILE_NAME}`))
-          .map(it => it.title);
-        
-        const message = `<ul>${titles.map(it => `<li>${it}</li>`).join(`\n`)}</ul>`;
+          .map((it) => it.title);
+
+        const message = `<ul>${titles.map((it) => `<li>${it}</li>`).join(`\n`)}</ul>`;
 
         sendResponse(HttpStatusCode.OK, message, res);
       } catch (err) {
-        sendResponse(HttpStatusCode.NOT_FOUND, STATUS_CODES[HttpStatusCode.NOT_FOUND], res)
+        sendResponse(HttpStatusCode.NOT_FOUND, STATUS_CODES[HttpStatusCode.NOT_FOUND], res);
       }
       break;
 
     default:
-      sendResponse(HttpStatusCode.NOT_FOUND, STATUS_CODES[HttpStatusCode.NOT_FOUND], res)
+      sendResponse(HttpStatusCode.NOT_FOUND, STATUS_CODES[HttpStatusCode.NOT_FOUND], res);
   }
 
-  sendResponse(200, req.url, res)
-}
+  sendResponse(200, req.url, res);
+};
 
 module.exports = {
   name: `--server`,
@@ -54,12 +54,12 @@ module.exports = {
     createServer(onClientConnect).listen(port, (err) => {
       if (err) {
         console.error(chalk.red(`Error creating server: "${err}"`));
-        process.exit(ExitCode.ERROR)
-      };
+        process.exit(ExitCode.ERROR);
+      }
 
       console.info(chalk.green(`Listening port ${port}...`));
     });
 
-    return ExitCode.WORKING
+    return ExitCode.WORKING;
   }
 };

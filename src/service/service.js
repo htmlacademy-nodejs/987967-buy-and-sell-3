@@ -15,8 +15,8 @@ const executeCommand = async (commandName, arg) => {
   const exitCode = await command.run(arg);
 
   if (exitCode !== ExitCode.WORKING) {
-    process.exit(exitCode)
-  };
+    process.exit(exitCode);
+  }
 };
 
 executeCommand(userCommand, commandArg);
