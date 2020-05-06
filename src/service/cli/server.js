@@ -54,7 +54,7 @@ module.exports = {
     createServer(onClientConnect).listen(port, (err) => {
       if (err) {
         console.error(chalk.red(`Error creating server: "${err}"`));
-        return ExitCode.ERROR
+        process.exit(ExitCode.ERROR)
       };
 
       console.info(chalk.green(`Listening port ${port}...`));
