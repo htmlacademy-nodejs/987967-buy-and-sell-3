@@ -3,11 +3,11 @@
 const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement, readContent} = require(`../../utils`);
 const fs = require(`fs`);
 const chalk = require(`chalk`);
+const { ExitCode, MOCK_FILE_NAME } = require(`../const`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
 const ERROR_MESSAGE = `Не больше ${MAX_COUNT} объявлений`;
-const MOCK_FILE_NAME = `mocks.json`;
 const FileMessage = {
   ERROR: `Can't write data to file...`,
   SUCCESS: `Operation success. File created.`,
@@ -62,7 +62,7 @@ const createMockFile = async (count) => {
     console.info(chalk.green(FileMessage.SUCCESS));
   } catch (err) {
     console.error(chalk.red(FileMessage.ERROR));
-    throw new Error(err);
+    return ExitCode.ERROR
   }
 };
 
@@ -74,9 +74,10 @@ module.exports = {
 
     if (offerCount > MAX_COUNT) {
       console.error(chalk.red(ERROR_MESSAGE));
-      throw new Error(ERROR_MESSAGE);
+      return ExitCode.ERROR
     }
 
     await createMockFile(offerCount);
+    return ExitCode.SUCCESS
   }
 };
