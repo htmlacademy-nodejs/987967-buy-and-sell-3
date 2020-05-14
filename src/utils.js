@@ -33,12 +33,32 @@ const getRandomBoolean = () => Math.random() > 0.5;
 const readContent = async (filename) => {
   try {
     const content = await fs.promises.readFile(filename, `utf-8`);
-    return content.split(`\r\n`);
+    return content.trim().split(`\n`);
   } catch (err) {
     console.error(chalk.red(err));
     return [];
   }
 };
+
+const sendResponse = (status, message, res) => {
+  const template = `
+    <!Doctype html>
+      <html lang="ru">
+      <head>
+        <title>987967-buy-and-sell-3</title>
+      </head>
+      <body>${message}</body>
+    </html>`.trim();
+
+  res.statusCode = status;
+  res.writeHead(status, {
+    "content-type": `text/html; charset=utf-8`
+  });
+  res.end(template);
+};
+
+const getMockTitles = async (filename) => JSON.parse(await fs.promises.readFile(filename, `utf-8`)).map((it) => it.title);
+const getTitleList = (titles) => `<ul>${titles.map((it) => `<li>${it}</li>`).join(`\n`)}</ul>`;
 
 module.exports = {
   getRandomInt,
@@ -47,4 +67,7 @@ module.exports = {
   getRandomUniqueElements,
   getRandomBoolean,
   readContent,
+  sendResponse,
+  getMockTitles,
+  getTitleList,
 };
