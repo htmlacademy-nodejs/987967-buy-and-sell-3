@@ -1,0 +1,258 @@
+extends layout.pug
+
+block prepend header
+  -var isLogged = false
+
+block content
+  main.page-content
+    section.categories-list
+      h1.visually-hidden &Scy;&iecy;&rcy;&vcy;&icy;&scy; &ocy;&bcy;&hardcy;&yacy;&vcy;&lcy;&iecy;&ncy;&icy;&jcy; &quot;&Kcy;&ucy;&pcy;&lcy;&yucy; - &pcy;&rcy;&ocy;&dcy;&acy;&mcy;&quot;
+      ul.categories-list__wrapper
+        li.categories-list__item
+          a.category-tile.category-tile--default(href='#')
+            span.category-tile__image
+              img(src='img/cat.jpg' srcset='img/cat@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | &Dcy;&ocy;&mcy; 
+              span.category-tile__qty.js-qty 81
+        li.categories-list__item
+          a.category-tile.category-tile--default(href='#')
+            span.category-tile__image
+              img(src='img/cat02.jpg' srcset='img/cat02@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | &Ecy;&lcy;&iecy;&kcy;&tcy;&rcy;&ocy;&ncy;&icy;&kcy;&acy; 
+              span.category-tile__qty.js-qty 62
+        li.categories-list__item
+          a.category-tile.category-tile--default(href='#')
+            span.category-tile__image
+              img(src='img/cat03.jpg' srcset='img/cat03@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | &Ocy;&dcy;&iecy;&zhcy;&dcy;&acy; 
+              span.category-tile__qty.js-qty 106
+        li.categories-list__item
+          a.category-tile.category-tile--default(href='#')
+            span.category-tile__image
+              img(src='img/cat04.jpg' srcset='img/cat04@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | &Scy;&pcy;&ocy;&rcy;&tcy;/&ocy;&tcy;&dcy;&ycy;&khcy; 
+              span.category-tile__qty.js-qty 86
+        li.categories-list__item
+          a.category-tile.category-tile--default(href='#')
+            span.category-tile__image
+              img(src='img/cat05.jpg' srcset='img/cat05@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | &Acy;&vcy;&tcy;&ocy; 
+              span.category-tile__qty.js-qty 34
+        li.categories-list__item
+          a.category-tile.category-tile--default(href='#')
+            span.category-tile__image
+              img(src='img/cat06.jpg' srcset='img/cat06@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | &Kcy;&ncy;&icy;&gcy;&icy; 
+              span.category-tile__qty.js-qty 92
+    section.tickets-list
+      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ncy;&ocy;&vcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
+      .tickets-list__wrapper
+        .tickets-list__header
+          p.tickets-list__title &Scy;&acy;&mcy;&ocy;&iecy; &scy;&vcy;&iecy;&zhcy;&iecy;&iecy;
+        ul
+          li.tickets-list__item
+            .ticket-card.ticket-card--color01
+              .ticket-card__img
+                img(src='img/item01.jpg' srcset='img/item01@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
+                .ticket-card__categories
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&acy;
+                  p.ticket-card__price
+                    span.js-sum 1000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color02
+              .ticket-card__img
+                img(src='img/item02.jpg' srcset='img/item02@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Mcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;
+                  p.ticket-card__price
+                    span.js-sum 4000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Pcy;&rcy;&ocy;&dcy;&acy;&mcy; &scy;&vcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&icy;&dcy;&iecy;&tcy;&softcy; &icy; &chcy;&icy;&tcy;&acy;&tcy;&softcy; &kcy;&ncy;&icy;&gcy;&icy; &zcy;&icy;&mcy;&ncy;&icy;&mcy;&icy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color03
+              .ticket-card__img
+                img(src='img/item03.jpg' srcset='img/item03@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy;
+                  p.ticket-card__price
+                    span.js-sum 45 000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Pcy;&rcy;&ocy;&dcy;&acy;&yucy; &dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy; &vcy;&nbsp;&pcy;&rcy;&iecy;&kcy;&rcy;&acy;&scy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &khcy;&ocy;&dcy;&yacy;&tcy; &dcy;&ocy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color04
+              .ticket-card__img
+                img(src='img/item04.jpg' srcset='img/item04@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
+                .ticket-card__categories
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&acy;
+                  p.ticket-card__price
+                    span.js-sum 2000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &vcy;&ocy;&tcy; &tcy;&acy;&kcy;&ucy;&yucy; &icy;&tcy;&acy;&lcy;&softcy;&yacy;&ncy;&scy;&kcy;&ucy;&yucy; &kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&ucy;, &mcy;&ocy;&zhcy;&ncy;&ocy; &lcy;&yucy;&bcy;&ocy;&jcy; &fcy;&icy;&rcy;&mcy;&ycy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color05
+              .ticket-card__img
+                img(src='img/item05.jpg' srcset='img/item05@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Acy;&vcy;&tcy;&ocy;
+                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Lcy;&iecy;&ncy;&dcy; &Rcy;&ocy;&vcy;&iecy;&rcy;
+                  p.ticket-card__price
+                    span.js-sum 900 000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color06
+              .ticket-card__img
+                img(src='img/item06.jpg' srcset='img/item06@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') Ableton
+                  p.ticket-card__price
+                    span.js-sum 88 000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Pcy;&rcy;&ocy;&dcy;&acy;&mcy; &scy;&vcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&icy;&dcy;&iecy;&tcy;&softcy; &icy; &chcy;&icy;&tcy;&acy;&tcy;&softcy; &kcy;&ncy;&icy;&gcy;&icy; &zcy;&icy;&mcy;&ncy;&icy;&mcy;&icy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color07
+              .ticket-card__img
+                img(src='img/item07.jpg' srcset='img/item07@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Scy;&pcy;&ocy;&rcy;&tcy; &icy; &ocy;&tcy;&dcy;&ycy;&khcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Dcy;&ocy;&scy;&kcy;&acy;
+                  p.ticket-card__price
+                    span.js-sum 55 000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Pcy;&rcy;&ocy;&dcy;&acy;&yucy; &dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy; &vcy;&nbsp;&pcy;&rcy;&iecy;&kcy;&rcy;&acy;&scy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &khcy;&ocy;&dcy;&yacy;&tcy; &dcy;&ocy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color08
+              .ticket-card__img
+                img(src='img/item08.jpg' srcset='img/item08@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
+                .ticket-card__categories
+                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Fcy;&ocy;&tcy;&icy;&kcy; Canon
+                  p.ticket-card__price
+                    span.js-sum 32 000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &vcy;&ocy;&tcy; &tcy;&acy;&kcy;&ucy;&yucy; &icy;&tcy;&acy;&lcy;&softcy;&yacy;&ncy;&scy;&kcy;&ucy;&yucy; &kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&ucy;, &mcy;&ocy;&zhcy;&ncy;&ocy; &lcy;&yucy;&bcy;&ocy;&jcy; &fcy;&icy;&rcy;&mcy;&ycy;...
+    section.tickets-list
+      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ocy;&bcy;&scy;&ucy;&zhcy;&dcy;&acy;&iecy;&mcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
+      .tickets-list__wrapper
+        .tickets-list__header
+          p.tickets-list__title &Scy;&acy;&mcy;&ycy;&iecy; &ocy;&bcy;&scy;&ucy;&zhcy;&dcy;&acy;&iecy;&mcy;&ycy;&iecy;
+        ul
+          li.tickets-list__item
+            .ticket-card.ticket-card--color09
+              .ticket-card__img
+                img(src='img/item09.jpg' srcset='img/item09@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
+                .ticket-card__categories
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&acy;
+                  p.ticket-card__price
+                    span.js-sum 1000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color10
+              .ticket-card__img
+                img(src='img/item10.jpg' srcset='img/item10@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Mcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;
+                  p.ticket-card__price
+                    span.js-sum 4000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Pcy;&rcy;&ocy;&dcy;&acy;&mcy; &scy;&vcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&icy;&dcy;&iecy;&tcy;&softcy; &icy; &chcy;&icy;&tcy;&acy;&tcy;&softcy; &kcy;&ncy;&icy;&gcy;&icy; &zcy;&icy;&mcy;&ncy;&icy;&mcy;&icy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color11
+              .ticket-card__img
+                img(src='img/item11.jpg' srcset='img/item11@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+                .ticket-card__categories
+                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy;
+                  p.ticket-card__price
+                    span.js-sum 45 000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Pcy;&rcy;&ocy;&dcy;&acy;&yucy; &dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy; &vcy;&nbsp;&pcy;&rcy;&iecy;&kcy;&rcy;&acy;&scy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &khcy;&ocy;&dcy;&yacy;&tcy; &dcy;&ocy;...
+          li.tickets-list__item
+            .ticket-card.ticket-card--color04
+              .ticket-card__img
+                img(src='img/item04.jpg' srcset='img/item04@2x.jpg 2x' alt='Изображение товара')
+              .ticket-card__info
+                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
+                .ticket-card__categories
+                  a(href='#') &Dcy;&ocy;&mcy;
+                .ticket-card__header
+                  h3.ticket-card__title
+                    a(href='#') &Kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&acy;
+                  p.ticket-card__price
+                    span.js-sum 2000
+                    |  &#x20BD;
+                .ticket-card__desc
+                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &vcy;&ocy;&tcy; &tcy;&acy;&kcy;&ucy;&yucy; &icy;&tcy;&acy;&lcy;&softcy;&yacy;&ncy;&scy;&kcy;&ucy;&yucy; &kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&ucy;, &mcy;&ocy;&zhcy;&ncy;&ocy; &lcy;&yucy;&bcy;&ocy;&jcy; &fcy;&icy;&rcy;&mcy;&ycy;...

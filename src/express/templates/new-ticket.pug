@@ -1,0 +1,52 @@
+extends layout.pug
+
+block prepend head
+  base(href="/")
+
+block prepend header
+  -var isLogged = true 
+
+block content
+  main.page-content
+    section.ticket-form
+      .ticket-form__wrapper
+        h1.ticket-form__title &Ncy;&ocy;&vcy;&acy;&yacy; &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        .ticket-form__tile
+          form.ticket-form__form.form(action='#' method='post' enctype='multipart/form-data' autocomplete='off')
+            .ticket-form__avatar-container.js-preview-container
+              .ticket-form__avatar.js-preview
+              .ticket-form__field-avatar
+                input#avatar.visually-hidden.js-file-field(type='file' name='avatar')
+                label(for='avatar')
+                  span.ticket-form__text-upload &Zcy;&acy;&gcy;&rcy;&ucy;&zcy;&icy;&tcy;&softcy; &fcy;&ocy;&tcy;&ocy;&mldr;
+                  span.ticket-form__text-another &Zcy;&acy;&gcy;&rcy;&ucy;&zcy;&icy;&tcy;&softcy; &dcy;&rcy;&ucy;&gcy;&ocy;&iecy; &fcy;&ocy;&tcy;&ocy;&mldr;
+            .ticket-form__content
+              .ticket-form__row
+                .form__field
+                  input#ticket-name.js-field(type='text' name='ticket-name' required='')
+                  label(for='ticket-name') &Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;
+                  span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+              .ticket-form__row
+                .form__field
+                  textarea#comment-field.js-field(name='comment' cols='30' rows='10' maxlength='400' minlength='50')
+                  label(for='comment-field') &Ocy;&pcy;&icy;&scy;&acy;&ncy;&icy;&iecy;
+                  span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+              .ticket-form__row
+                select#category-field.form__select.js-multiple-select(name='category' data-label='Выбрать категорию публикации')
+                  option(value='1') &Dcy;&ocy;&mcy;
+                  option(value='2') &Scy;&pcy;&ocy;&rcy;&tcy; &icy; &ocy;&tcy;&dcy;&ycy;&khcy;
+                  option(value='3') &Acy;&vcy;&tcy;&ocy;
+                  option(value='4') &Ecy;&lcy;&iecy;&kcy;&tcy;&rcy;&ocy;&ncy;&icy;&kcy;&acy;
+              .ticket-form__row
+                .form__field.form__field--price
+                  input#price-field.js-field.js-price(type='number' name='price' min='1' required='')
+                  label(for='price-field') &TScy;&iecy;&ncy;&acy;
+                  span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+                .form__switch.switch
+                  .switch__item
+                    input#buy-field.visually-hidden(type='radio' name='action' value='buy')
+                    label.switch__button(for='buy-field') &Kcy;&ucy;&pcy;&lcy;&yucy;
+                  .switch__item
+                    input#sell-field.visually-hidden(type='radio' name='action' value='sell')
+                    label.switch__button(for='sell-field') &Pcy;&rcy;&ocy;&dcy;&acy;&mcy;
+            button.form__button.btn.btn--medium.js-button(type='submit' disabled='') &Ocy;&pcy;&ucy;&bcy;&lcy;&icy;&kcy;&ocy;&vcy;&acy;&tcy;&softcy;
