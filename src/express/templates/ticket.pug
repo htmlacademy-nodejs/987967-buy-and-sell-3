@@ -1,0 +1,82 @@
+extends layout.pug
+
+block prepend head
+  base(href="/")
+
+block prepend header
+  -var isLogged = true
+
+block content
+  main.page-content
+    section.ticket
+      .ticket__wrapper
+        h1.visually-hidden &Kcy;&acy;&rcy;&tcy;&ocy;&chcy;&kcy;&acy; &ocy;&bcy;&hardcy;&yacy;&vcy;&lcy;&iecy;&ncy;&icy;&yacy;
+        .ticket__content
+          .ticket__img
+            img(src='img/ticket.jpg' srcset='img/ticket@2x.jpg 2x' alt='Изображение товара')
+          .ticket__info
+            h2.ticket__title &Mcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;
+            .ticket__header
+              p.ticket__price
+                span.js-sum 4000
+                |  &#x20BD;
+              p.ticket__action &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
+            .ticket__desc
+              p
+                | &Pcy;&rcy;&ocy;&dcy;&acy;&mcy; &scy;&vcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&icy;&dcy;&iecy;&tcy;&softcy; &icy; &chcy;&icy;&tcy;&acy;&tcy;&softcy; &kcy;&ncy;&icy;&gcy;&icy; &zcy;&icy;&mcy;&ncy;&icy;&mcy;&icy; &vcy;&iecy;&chcy;&iecy;&rcy;&acy;&mcy;&icy;. &Ncy;&ocy;&zhcy;&kcy;&icy; &mcy;&yacy;&gcy;&kcy;&icy;&iecy;, &mcy;&ocy;&jcy; &pcy;&ocy;&lcy; &ncy;&iecy; &tscy;&acy;&rcy;&acy;&pcy;&acy;&yucy;&tcy;. &Kcy;&rcy;&iecy;&scy;&lcy;&ocy; &pcy;&ocy;&chcy;&tcy;&icy; &ncy;&ocy;&vcy;&ocy;&iecy; &ndash; &pcy;&rcy;&ocy;&dcy;&acy;&yucy;, &tcy;.&kcy;. &ncy;&acy;&dcy;&ocy;&iecy;&lcy; &scy;&iecy;&rcy;&ycy;&jcy; &tscy;&vcy;&iecy;&tcy;. &Mcy;&ocy;&zhcy;&ncy;&ocy;, &kcy;&ocy;&ncy;&iecy;&chcy;&ncy;&ocy;, &ncy;&acy;&kcy;&icy;&ncy;&ucy;&tcy;&softcy; &pcy;&lcy;&iecy;&dcy; &icy; &scy;&pcy;&acy;&scy;&tcy;&icy; &scy;&icy;&tcy;&ucy;&acy;&tscy;&icy;&yucy;, &ncy;&ocy; &yacy; &vcy;&scy;&iecy;-&tcy;&acy;&kcy;&icy; &khcy;&ocy;&chcy;&ucy; &pcy;&rcy;&ocy;&scy;&tcy;&ocy; &dcy;&rcy;&ucy;&gcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;. &Vcy; &ocy;&bcy;&shchcy;&iecy;&mcy; &ocy;&ncy;&ocy; &ncy;&acy; &scy;&acy;&mcy;&ocy;&mcy; &dcy;&iecy;&lcy;&iecy; &ucy;&dcy;&ocy;&bcy;&ncy;&ocy;&iecy; &icy; &scy; &ncy;&icy;&mcy; &vcy;&scy;&iecy; &khcy;&ocy;&rcy;&ocy;&shcy;&ocy;, &pcy;&rcy;&ocy;&scy;&tcy;&ocy; &ncy;&acy;&mcy; &pcy;&ocy;&rcy;&acy; &rcy;&acy;&scy;&scy;&tcy;&acy;&tcy;&softcy;&scy;&yacy;.
+            .ticket__data
+              p
+                b &Dcy;&acy;&tcy;&acy; &dcy;&ocy;&bcy;&acy;&vcy;&lcy;&iecy;&ncy;&icy;&yacy;:
+                span 20 &ncy;&ocy;&yacy;&bcy;&rcy;&yacy; 2019
+              p
+                b &Acy;&vcy;&tcy;&ocy;&rcy;:
+                a(href='#') &Dcy;&iecy;&ncy;&icy;&scy; &SHcy;&kcy;&acy;&tcy;&ucy;&lcy;&kcy;&icy;&ncy;
+              p
+                b &Kcy;&ocy;&ncy;&tcy;&acy;&kcy;&tcy;&ycy;:
+                a(href='mailto:shkatulkin@ya.ru') shkatulkin@ya.ru
+            ul.ticket__tags
+              li
+                a.category-tile.category-tile--small(href='#')
+                  span.category-tile__image
+                    img(src='img/cat.jpg' srcset='img/cat@2x.jpg 2x' alt='Иконка категории')
+                  span.category-tile__label &Dcy;&ocy;&mcy;
+              li
+                a.category-tile.category-tile--small(href='#')
+                  span.category-tile__image
+                    img(src='img/cat04.jpg' srcset='img/cat04@2x.jpg 2x' alt='Иконка категории')
+                  span.category-tile__label &Scy;&pcy;&ocy;&rcy;&tcy; &icy; &ocy;&tcy;&dcy;&ycy;&khcy;
+        .ticket__comments
+          h2.ticket__subtitle &Kcy;&ocy;&mcy;&iecy;&ncy;&tcy;&acy;&rcy;&icy;&icy;
+          .ticket__comment-form
+            form.form.comment-form(action='#' method='post')
+              .comment-form__header
+                a.comment-form__avatar.avatar(href='#')
+                  img(src='img/avatar.jpg' srcset='img/avatar@2x.jpg 2x' alt='Аватар пользователя')
+                p.comment-form__author &Vcy;&acy;&mcy; &scy;&lcy;&ocy;&vcy;&ocy;
+              .comment-form__field
+                .form__field
+                  textarea#comment-field.js-field(name='comment' cols='30' rows='10' maxlength='400' minlength='50') &Ncy;&ocy;&rcy;&mcy;&acy;&lcy;&softcy;&ncy;&ocy;&iecy; &vcy;&ocy;&ocy;&bcy;&shchcy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;! &Acy; &kcy;&acy;&kcy; &ncy;&acy;&scy;&chcy;
+                  label(for='comment-field') &Tcy;&iecy;&kcy;&scy;&tcy; &kcy;&ocy;&mcy;&mcy;&iecy;&ncy;&tcy;&acy;&rcy;&icy;&yacy;
+                  span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+              button.comment-form__button.btn.btn--white.js-button(type='submit' disabled='') &Ocy;&tcy;&pcy;&rcy;&acy;&vcy;&icy;&tcy;&softcy;
+          .ticket__comments-list
+            ul.comments-list
+              li
+                .comment-card
+                  .comment-card__header
+                    a.comment-card__avatar.avatar(href='#')
+                      img(src='img/avatar02.jpg' srcset='img/avatar02@2x.jpg 2x' alt='Аватар пользователя')
+                    p.comment-card__author &Gcy;&iecy;&ocy;&rcy;&gcy;&icy;&jcy; &SHcy;&pcy;&icy;&tscy;
+                  .comment-card__content
+                    p &CHcy;&tcy;&ocy; &ecy;&tcy;&ocy; &zcy;&acy; &rcy;&ucy;&khcy;&lcy;&yacy;&dcy;&softcy;? &Scy;&tcy;&ycy;&dcy;&ncy;&ocy; &tcy;&acy;&kcy;&ocy;&iecy; &dcy;&acy;&zhcy;&iecy; &fcy;&ocy;&tcy;&ocy;&gcy;&rcy;&acy;&fcy;&icy;&rcy;&ocy;&vcy;&acy;&tcy;&softcy;, &ncy;&iecy; &tcy;&ocy;, &chcy;&tcy;&ocy;&nbsp;&pcy;&rcy;&ocy;&dcy;&acy;&vcy;&acy;&tcy;&softcy;.
+              li
+                .comment-card
+                  .comment-card__header
+                    a.comment-card__avatar.avatar(href='#')
+                      img(src='img/avatar03.jpg' srcset='img/avatar03@2x.jpg 2x' alt='Аватар пользователя')
+                    p.comment-card__author &Acy;&lcy;&iecy;&kcy;&scy;&acy;&ncy;&dcy;&rcy; &Bcy;&ucy;&rcy;&ycy;&jcy;
+                  .comment-card__content
+                    p
+                      | &Acy; &mcy;&ocy;&zhcy;&iecy;&tcy;&iecy; &dcy;&ocy;&scy;&tcy;&acy;&vcy;&icy;&tcy;&softcy; &mcy;&ncy;&iecy; &dcy;&ocy;&mcy;&ocy;&jcy;? &Gcy;&ocy;&tcy;&ocy;&vcy; &dcy;&ocy;&pcy;&lcy;&acy;&tcy;&icy;&tcy;&softcy; 300 &scy;&vcy;&iecy;&rcy;&khcy;&ucy;. 
+                      br
+                      | &ZHcy;&icy;&vcy;&ucy; &vcy; &tscy;&iecy;&ncy;&tcy;&rcy;&iecy; &pcy;&rcy;&yacy;&mcy;&ocy; &rcy;&yacy;&dcy;&ocy;&mcy; &scy; &Mcy;&ocy;&khcy;&ocy;&vcy;&ocy;&jcy; &ucy;&lcy;&icy;&tscy;&iecy;&jcy;. &Gcy;&ocy;&tcy;&ocy;&vcy; &kcy;&ucy;&pcy;&icy;&tcy;&softcy; &pcy;&rcy;&yacy;&mcy;&ocy; &scy;&iecy;&jcy;&chcy;&acy;&scy;. &Mcy;&ocy;&jcy; &tcy;&iecy;&lcy;&iecy;&fcy;&ocy;&ncy; 9032594748

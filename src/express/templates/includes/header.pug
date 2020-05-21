@@ -1,0 +1,20 @@
+header.header(class={"header--logged": isLogged === true})
+  .header__wrapper
+    a.header__logo.logo(href='main.html')
+      img(src='img/logo.svg' width='179' height='34' alt='Логотип Куплю Продам')
+    nav.header__user-menu
+      ul.header__list
+        li.header__item(class={"header__item--active": activeItem === "tickets"})
+          a(href='my-tickets.html') &Pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&icy;
+        li.header__item(class={"header__item--active": activeItem === "comments"})
+          a(href='comments.html') &Kcy;&ocy;&mcy;&mcy;&iecy;&ncy;&tcy;&acy;&rcy;&icy;&icy;
+    form.search(method='get' action='#' autocomplete='off')
+      input(type='search' name='search' placeholder='Поиск' aria-label='Поиск' value=searchValue)
+      .search__icon
+      .search__close-btn(class={"search__close-btn--active": searchValue !== ""})
+    a.header__avatar.avatar(href='#')
+      img(src='img/avatar.jpg' srcset='img/avatar@2x.jpg 2x' alt='Аватар пользователя')
+    if isLogged
+        a.header__input(href="ticket-form.html") &Vcy;&khcy;&ocy;&dcy; &icy; &rcy;&iecy;&gcy;&icy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&yacy;
+    else
+        a.header__input(href="sign-up.html") &Vcy;&khcy;&ocy;&dcy; &icy; &rcy;&iecy;&gcy;&icy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&yacy;
