@@ -1,7 +1,9 @@
 'use strict';
 
 const fs = require(`fs`);
+const path = require(`path`);
 const chalk = require(`chalk`);
+const {MOCK_FILE_NAME} = require(`./service/const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -57,7 +59,11 @@ const sendResponse = (status, message, res) => {
   res.end(template);
 };
 
-const getMockTitles = async (filename) => JSON.parse(await fs.promises.readFile(filename, `utf-8`)).map((it) => it.title);
+const getMockOffers = async () => {
+  const mockFile = path.resolve(process.cwd(), MOCK_FILE_NAME);
+  return JSON.parse(await fs.promises.readFile(mockFile, `utf-8`));
+};
+const getMockTitles = async () => await getMockOffers().map((it) => it.title);
 const getTitleList = (titles) => `<ul>${titles.map((it) => `<li>${it}</li>`).join(`\n`)}</ul>`;
 
 module.exports = {
@@ -68,6 +74,7 @@ module.exports = {
   getRandomBoolean,
   readContent,
   sendResponse,
+  getMockOffers,
   getMockTitles,
   getTitleList,
 };
