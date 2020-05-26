@@ -19,6 +19,8 @@ module.exports = {
     NOT_FOUND: `Not found`,
     OK: `Ok`,
     SERVER_ERROR: `Server error`,
-  }
+  },
+
+  MAX_ID_LENGTH: 6,
 };
 
