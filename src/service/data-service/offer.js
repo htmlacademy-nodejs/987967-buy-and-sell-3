@@ -40,6 +40,11 @@ class offerService {
     this._offers[index] = offer;
     return offer;
   }
+
+  search(query) {
+    const regexp = new RegExp(query, `i`);
+    return this._offers.filter((it) => regexp.test(it.title));
+  }
 }
 
 module.exports = offerService;
