@@ -8,6 +8,7 @@ const {offerRouterCreator} = require(`./offers`);
 const {CategoryService, CommentService, OfferService} = require(`../data-service/`);
 
 const app = new Router();
+
 const apiCreator = async () => {
   const offers = await getMockData();
   const offerService = new OfferService(offers);
@@ -15,8 +16,13 @@ const apiCreator = async () => {
   app.use(`/categories`, categoryRouterCreator(new CategoryService(offers)));
   app.use(`/offers`, offerRouterCreator(offerService, new CommentService(offers)));
   app.use(`/search`, searchRouterCreator(offerService));
+
+  return app;
 };
 
 apiCreator();
 
-module.exports = app;
+module.exports = {
+  apiRouter: app,
+  apiCreator,
+};

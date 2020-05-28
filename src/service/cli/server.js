@@ -2,7 +2,7 @@
 
 const chalk = require(`chalk`);
 const express = require(`express`);
-const apiRouter = require(`../api`);
+const {apiRouter} = require(`../api`);
 const {ExitCode, HttpStatusCode, HttpStatusInfo, API_PREFIX} = require(`../const`);
 
 const DEFAULT_PORT = 3000;
