@@ -28,5 +28,7 @@ module.exports = {
   MAX_ID_LENGTH: 6,
 
   API_PREFIX: `/api`,
+
+  ROOT_FOLDER: `987967-buy-and-sell-3`,
 };
 

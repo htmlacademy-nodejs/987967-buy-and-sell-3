@@ -38,5 +38,6 @@ module.exports = {
     }
 
     return ExitCode.WORKING;
-  }
+  },
+  server: app,
 };

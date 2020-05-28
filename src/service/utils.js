@@ -3,7 +3,7 @@
 const fs = require(`fs`);
 const path = require(`path`);
 const chalk = require(`chalk`);
-const {MOCK_FILE_NAME} = require(`./const`);
+const {MOCK_FILE_NAME, ROOT_FOLDER} = require(`./const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -60,7 +60,7 @@ const sendResponse = (status, message, res) => {
 };
 
 const getMockOffers = async () => {
-  const mockFile = path.resolve(process.cwd(), MOCK_FILE_NAME);
+  const mockFile = path.resolve(getRootFolder(__dirname), MOCK_FILE_NAME);
   let offers = [];
   try {
     offers = JSON.parse(await fs.promises.readFile(mockFile, `utf-8`));
@@ -72,6 +72,7 @@ const getMockOffers = async () => {
 };
 const getMockTitles = async () => await getMockOffers().map((it) => it.title);
 const getTitleList = (titles) => `<ul>${titles.map((it) => `<li>${it}</li>`).join(`\n`)}</ul>`;
+const getRootFolder = (currentPath) => currentPath.replace(RegExp(`${ROOT_FOLDER}.+`), ROOT_FOLDER);
 
 module.exports = {
   getRandomInt,
@@ -84,4 +85,5 @@ module.exports = {
   getMockOffers,
   getMockTitles,
   getTitleList,
+  getRootFolder,
 };
