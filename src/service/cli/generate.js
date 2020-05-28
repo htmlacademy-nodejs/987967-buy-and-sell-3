@@ -1,6 +1,13 @@
 'use strict';
 
-const {getRandomBoolean, getRandomUniqueElements, getRandomInt, getRandomElement, readContent} = require(`../../utils`);
+const {
+  getRandomBoolean,
+  getRandomUniqueElements,
+  getRandomInt,
+  getRandomElement,
+  readContent
+} = require(`../utils`);
+
 const fs = require(`fs`);
 const chalk = require(`chalk`);
 const {nanoid} = require(`nanoid`);

@@ -3,7 +3,7 @@
 const fs = require(`fs`);
 const path = require(`path`);
 const chalk = require(`chalk`);
-const {MOCK_FILE_NAME} = require(`./service/const`);
+const {MOCK_FILE_NAME} = require(`./const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -61,7 +61,14 @@ const sendResponse = (status, message, res) => {
 
 const getMockOffers = async () => {
   const mockFile = path.resolve(process.cwd(), MOCK_FILE_NAME);
-  return JSON.parse(await fs.promises.readFile(mockFile, `utf-8`));
+  let offers = [];
+  try {
+    offers = JSON.parse(await fs.promises.readFile(mockFile, `utf-8`));
+  } catch (err) {
+    offers = [];
+  }
+
+  return offers;
 };
 const getMockTitles = async () => await getMockOffers().map((it) => it.title);
 const getTitleList = (titles) => `<ul>${titles.map((it) => `<li>${it}</li>`).join(`\n`)}</ul>`;
