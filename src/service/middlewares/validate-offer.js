@@ -2,7 +2,7 @@
 
 const {HttpStatusCode} = require(`../const`);
 
-const REQUIRED_FIELD = [`title`, `picture`, `description`, `type`, `sum`, `category`, `comments`];
+const REQUIRED_FIELD = [`title`, `picture`, `description`, `type`, `sum`, `category`];
 
 const validateOffer = (req, res, next) => {
   const offer = req.body;

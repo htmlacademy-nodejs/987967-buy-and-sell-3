@@ -37,8 +37,9 @@ class offerService {
       return null;
     }
 
-    this._offers[index] = offer;
-    return offer;
+    const updatedOffer = Object.assign({}, this._offers[index], offer);
+    this._offers[index] = updatedOffer;
+    return updatedOffer;
   }
 
   search(query) {
