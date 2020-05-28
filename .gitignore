@@ -16,3 +16,5 @@ build/
 
 # Моки
 mocks.json
+
+http-test-request/

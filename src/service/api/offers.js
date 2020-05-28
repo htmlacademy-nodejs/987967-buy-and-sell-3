@@ -2,7 +2,7 @@
 
 const {Router} = require(`express`);
 const {HttpStatusCode} = require(`../const`);
-const {findOffer} = require(`../middlewares`);
+const {findOffer, validateOffer, validateComment} = require(`../middlewares`);
 
 const router = new Router();
 
@@ -18,7 +18,7 @@ const offerRouterCreator = (offerService, commentService) => {
     res.status(HttpStatusCode.OK).json(offer);
   });
 
-  router.post(`/`, (req, res) => {
+  router.post(`/`, validateOffer, (req, res) => {
     const offer = req.body;
     res.status(HttpStatusCode.CREATED).json(offerService.create(offer));
   });
@@ -29,7 +29,7 @@ const offerRouterCreator = (offerService, commentService) => {
     res.status(HttpStatusCode.OK).json(deletedOffer);
   });
 
-  router.put(`/:offerID`, [findOfferMiddleware], (req, res) => {
+  router.put(`/:offerID`, [findOfferMiddleware, validateOffer], (req, res) => {
     const {offer} = req.locals;
     const updatedOffer = Object.assign({id: offer.id}, req.body);
     res.status(HttpStatusCode.OK).json(offerService.update(updatedOffer));
@@ -40,7 +40,7 @@ const offerRouterCreator = (offerService, commentService) => {
     res.status(HttpStatusCode.OK).json(commentService.getAll(offer));
   });
 
-  router.post(`/:offerID/comments`, [findOfferMiddleware], (req, res) => {
+  router.post(`/:offerID/comments`, [findOfferMiddleware, validateComment], (req, res) => {
     const {offer} = res.locals;
     const comment = req.body;
     const updatedOffer = commentService.create(offer, comment);
@@ -59,7 +59,6 @@ const offerRouterCreator = (offerService, commentService) => {
 
     res.status(HttpStatusCode.OK).json(offerService.update(updatedOffer));
   });
-
 
   return router;
 };
