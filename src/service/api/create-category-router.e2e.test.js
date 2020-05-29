@@ -1,26 +1,19 @@
 'use strict';
 
 const request = require(`supertest`);
-const express = require(`express`);
-const { createAPI } = require(`.`);
+const {createServer} = require(`../cli/server`);
 
-const ROOT_PATH = `/categories`;
+const ROOT_PATH = `/api/categories`;
 let server;
 
 beforeAll(async () => {
-  server = express();
-  const api = await createAPI();
-  server.use(api);
+  server = await createServer();
 });
 
 describe(`Test ${ROOT_PATH}`, () => {
-  it(`should be available when path is ${ROOT_PATH}`, async () => {
+  it(`should return an array when GET method`, async () => {
     const res = await request(server).get(ROOT_PATH);
     expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty(`length`);
   });
-
-  it(`should return 404 if path is not ${ROOT_PATH}`, async () => {
-    const res = await request(server).get(`${ROOT_PATH}${Date.now()}`);
-    expect(res.status).toBe(404);
-  });
-})
+});

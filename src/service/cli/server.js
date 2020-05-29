@@ -48,4 +48,5 @@ const run = async (portName) => {
 module.exports = {
   name: `--server`,
   run,
+  createServer: createApp,
 };
