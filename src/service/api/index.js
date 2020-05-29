@@ -1,28 +1,24 @@
 'use strict';
 
-const {Router} = require(`express`);
 const getMockData = require(`../lib/get-mock-data`);
-const {categoryRouterCreator} = require(`./categories`);
-const {searchRouterCreator} = require(`./search`);
-const {offerRouterCreator} = require(`./offers`);
-const {CategoryService, CommentService, OfferService} = require(`../data-service/`);
+const {Router} = require(`express`);
+const {createCategoryRouter} = require(`./create-category-router`);
+const {createSearchRouter} = require(`./create-search-router`);
+const {createOfferRouter} = require(`./create-offer-router`);
+const {CategoryService, CommentService, OfferService} = require(`../data-service`);
 
-const app = new Router();
-
-const apiCreator = async () => {
+const createAPI = async () => {
+  const router = new Router();
   const offers = await getMockData();
   const offerService = new OfferService(offers);
 
-  app.use(`/categories`, categoryRouterCreator(new CategoryService(offers)));
-  app.use(`/offers`, offerRouterCreator(offerService, new CommentService(offers)));
-  app.use(`/search`, searchRouterCreator(offerService));
+  router.use(`/categories`, createCategoryRouter(new CategoryService(offers)));
+  router.use(`/offers`, createOfferRouter(offerService, new CommentService(offers)));
+  router.use(`/search`, createSearchRouter(offerService));
 
-  return app;
+  return router;
 };
 
-apiCreator();
-
 module.exports = {
-  apiRouter: app,
-  apiCreator,
+  createAPI,
 };

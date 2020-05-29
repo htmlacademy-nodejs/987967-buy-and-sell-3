@@ -1,24 +1,26 @@
 'use strict';
 
 const request = require(`supertest`);
-const { apiCreator } = require(`../api`);
-const { API_PREFIX } = require(`../const`);
-const getMockData = require(`../lib/get-mock-data`);
+const express = require(`express`);
+const { createAPI } = require(`../api`);
 
-// test(`1`, async () => {
-//   const offers = await getMockData();
-//   console.log(`-------`);
-  
-//   const res = await request(server).get(`${API_PREFIX}/categories`);
-//   console.log(JSON.stringify(res.body));
-  
-//   expect(res.status).toBe(200);
-// })
+const ROOT_PATH = `/categories`;
+let server;
 
-test(`2`, async () => {
-  const server = await apiCreator();
-  const res = await request(server).get(`/categories`);
-  console.log(JSON.stringify(res.body));
-  
-  expect(res.status).toBe(200);
+beforeAll(async () => {
+  server = express();
+  const api = await createAPI();
+  server.use(api);
+});
+
+describe(`Test ${ROOT_PATH}`, () => {
+  it(`should be available when path is ${ROOT_PATH}`, async () => {
+    const res = await request(server).get(ROOT_PATH);
+    expect(res.status).toBe(200);
+  });
+
+  it(`should return 404 if path is not ${ROOT_PATH}`, async () => {
+    const res = await request(server).get(`${ROOT_PATH}${Date.now()}`);
+    expect(res.status).toBe(404);
+  });
 })

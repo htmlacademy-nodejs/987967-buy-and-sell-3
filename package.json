@@ -4,7 +4,8 @@
   "description": "Куплю. Продам",
   "main": "./src/service/service.js",
   "scripts": {
-    "test": "npm run eslint",
+    "test": "npm run test:rest",
+    "test:rest": "jest api/.+\\.test\\.js",
     "eslint": "eslint --ext .js src/",
     "eslint:fix": "eslint --ext .js src/ --fix",
     "start": "node ./src/service/service.js",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/dijeth/987967-buy-and-sell-3#readme",
   "devDependencies": {
+    "@types/jest": "25.2.3",
     "eslint": "6.8.0",
     "eslint-config-htmlacademy": "0.5.2",
     "jest": "26.0.1",
