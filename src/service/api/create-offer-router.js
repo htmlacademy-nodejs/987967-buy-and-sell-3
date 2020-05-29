@@ -47,6 +47,19 @@ const createOfferRouter = (offerService, commentService) => {
     res.status(HttpStatusCode.CREATED).json(offerService.update(updatedOffer));
   });
 
+  router.get(`/:offerID/comments/:commentID`, [findOfferMiddleware], (req, res) => {
+    const {offer} = res.locals;
+    const {commentID} = req.params;
+    const comment = commentService.getOne(offer, commentID);
+
+    if (!comment) {
+      res.status(HttpStatusCode.NOT_FOUND).send(`Comment with id="${commentID}" not found`);
+      return;
+    }
+
+    res.status(HttpStatusCode.OK).json(comment);
+  });
+
   router.delete(`/:offerID/comments/:commentID`, [findOfferMiddleware], (req, res) => {
     const {offer} = res.locals;
     const {commentID} = req.params;
@@ -54,6 +67,7 @@ const createOfferRouter = (offerService, commentService) => {
 
     if (!updatedOffer) {
       res.status(HttpStatusCode.NOT_FOUND).send(`Comment with id="${commentID}" not found`);
+      return;
     }
 
     res.status(HttpStatusCode.OK).json(offerService.update(updatedOffer));

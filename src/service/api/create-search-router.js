@@ -10,6 +10,7 @@ const createSearchRouter = (service) => {
 
     if (!query) {
       res.status(HttpStatusCode.BAD_REQUEST).send(`Bad request: "query" is empty`);
+      return;
     }
 
     res.status(HttpStatusCode.OK).json(service.search(req.query.query));

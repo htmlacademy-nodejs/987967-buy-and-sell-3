@@ -8,6 +8,10 @@ class CommentService {
     return offer.comments;
   }
 
+  getOne(offer, id) {
+    return offer.comments.find((it) => it.id === id);
+  }
+
   delete(offer, commentID) {
     const deletedComment = offer.comments.find((it) => it.id === commentID);
     if (!deletedComment) {

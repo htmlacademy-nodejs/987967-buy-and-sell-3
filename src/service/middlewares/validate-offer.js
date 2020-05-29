@@ -9,13 +9,17 @@ const validateOffer = (req, res, next) => {
 
   if (!offer) {
     res.status(HttpStatusCode.BAD_REQUEST).send(`Wrong offer data. Offer is empty`);
+    return;
   }
 
-  REQUIRED_FIELD.forEach((it) => {
-    if (!(it in offer)) {
-      res.status(HttpStatusCode.BAD_REQUEST).send(`Wrong offer data. Field "${it}" not found`);
-    }
-  });
+  const isValid = REQUIRED_FIELD.reduce((acc, cur) => {
+    return acc && (cur in offer);
+  }, true);
+
+  if (!isValid) {
+    res.status(HttpStatusCode.BAD_REQUEST).send(`Wrong offer data. Not all fields are found`);
+    return;
+  }
 
   next();
 };

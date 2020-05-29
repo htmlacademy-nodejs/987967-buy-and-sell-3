@@ -2,16 +2,23 @@
 
 const {HttpStatusCode} = require(`../const`);
 
-const REQUIRED_FIELD = [`text`];
+const REQUIRED_FIELDS = [`text`];
 
 const validateComment = (req, res, next) => {
   const comment = req.body;
+  if (!comment) {
+    res.status(HttpStatusCode.BAD_REQUEST).send(`Wrong comment data. Comment is empty`);
+    return;
+  }
 
-  REQUIRED_FIELD.forEach((it) => {
-    if (!(it in comment)) {
-      res.status(HttpStatusCode.BAD_REQUEST).send(`Wrong comment data. Field "${it}" not found`);
-    }
-  });
+  const isValid = REQUIRED_FIELDS.reduce((acc, cur) => {
+    return acc && (cur in comment);
+  }, true);
+
+  if (!isValid) {
+    res.status(HttpStatusCode.BAD_REQUEST).send(`Wrong comment data. Not all fields are found`);
+    return;
+  }
 
   next();
 };
