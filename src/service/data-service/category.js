@@ -19,7 +19,6 @@ class CategoryService {
     const categories = Object.keys(categoryOffers).map((it) => ({
       name: it,
       offerCount: categoryOffers[it].length,
-      // offers: categoryOffers[it],
     }));
 
     return categories;

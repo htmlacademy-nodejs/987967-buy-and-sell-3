@@ -1,32 +1,39 @@
 'use strict';
 
-const {nanoid} = require(`nanoid`);
-const {MAX_ID_LENGTH} = require(`../const`);
+const {AbstractService} = require(`./abstract-service`);
 
-class CommentService {
+class CommentService extends AbstractService {
+  constructor() {
+    super();
+    this.setTemplateItem({});
+  }
+
   getAll(offer) {
-    return offer.comments;
+    this.setItems(offer.comments);
+    return super.getAll();
   }
 
   getOne(offer, id) {
-    return offer.comments.find((it) => it.id === id);
+    this.setItems(offer.comments);
+    return super.getOne(id);
   }
 
   delete(offer, commentID) {
-    const deletedComment = offer.comments.find((it) => it.id === commentID);
-    if (!deletedComment) {
-      return null;
-    }
-
-    return Object.assign({}, offer, {comments: offer.comments.filter((it) => it.id !== commentID)});
+    this.setItems(offer.comments);
+    super.delete(commentID);
+    const updatedOffer = { ...offer, ...{ comments: this.getItems() } };
+    return updatedOffer;
   }
 
   create(offer, comment) {
-    const newComment = Object.assign({id: nanoid(MAX_ID_LENGTH)}, comment);
-    const updatedOffer = Object.assign({}, offer);
-    updatedOffer.comments.push(newComment);
-
+    this.setItems(offer.comments);
+    super.create(comment);
+    const updatedOffer = { ...offer, ...{ comments: this.getItems() } };
     return updatedOffer;
+  }
+
+  update() {
+    throw new Error(`Comment could't be updated`)
   }
 }
 

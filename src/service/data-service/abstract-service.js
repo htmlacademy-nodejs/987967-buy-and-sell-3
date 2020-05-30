@@ -5,11 +5,19 @@ const { MAX_ID_LENGTH } = require(`../const`);
 
 class AbstractService {
   constructor() {
-    throw new Error(`Can't run a constructor of abstract class`)
+    // throw new Error(`Can't run a constructor of abstract class`)
   }
 
   setItems(items) {
     this._items = items;
+  }
+
+  getItems() {
+    return this._items;
+  }
+
+  setTemplateItem(item) {
+    this._templateItem = item;
   }
 
   getAll() {
@@ -45,7 +53,7 @@ class AbstractService {
   }
 
   delete(id) {
-    const index = this._items.findIndex(it => it.id === item.id);
+    const index = this._items.findIndex(it => it.id === id);
     if (index === -1) {
       return null
     };
