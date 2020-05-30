@@ -61,7 +61,7 @@ const sendResponse = (status, message, res) => {
 
 const getMockOffers = async () => {
   const mockFile = path.resolve(getRootFolder(__dirname), MOCK_FILE_NAME);
-  let offers = [];
+  let offers;
   try {
     offers = JSON.parse(await fs.promises.readFile(mockFile, `utf-8`));
   } catch (err) {
