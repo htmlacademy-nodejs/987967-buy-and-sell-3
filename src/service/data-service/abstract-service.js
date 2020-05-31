@@ -1,12 +1,10 @@
 'use strict';
 
-const { nanoid } = require(`nanoid`);
-const { MAX_ID_LENGTH } = require(`../const`);
+const {nanoid} = require(`nanoid`);
+const {MAX_ID_LENGTH} = require(`../const`);
 
 class AbstractService {
-  constructor() {
-    // throw new Error(`Can't run a constructor of abstract class`)
-  }
+  constructor() {}
 
   setItems(items) {
     this._items = items;
@@ -21,11 +19,11 @@ class AbstractService {
   }
 
   getAll() {
-    return this._items
+    return this._items;
   }
 
   getOne(id) {
-    return this._items.find(it => it.id === id)
+    return this._items.find((it) => it.id === id);
   }
 
   create(item) {
@@ -41,30 +39,30 @@ class AbstractService {
   }
 
   update(item) {
-    const index = this._items.findIndex(it => it.id === item.id);
+    const index = this._items.findIndex((it) => it.id === item.id);
     if (index === -1) {
-      return null
-    };
+      return null;
+    }
 
-    const newItem = { ...this._items[index], ...item };
+    const newItem = {...this._items[index], ...item};
     this._items[index] = newItem;
 
-    return newItem
+    return newItem;
   }
 
   delete(id) {
-    const index = this._items.findIndex(it => it.id === id);
+    const index = this._items.findIndex((it) => it.id === id);
     if (index === -1) {
-      return null
-    };
+      return null;
+    }
 
     const deletedItem = this._items[index];
-    this._items = this._items.filter(it => it.id !== id);
+    this._items = this._items.filter((it) => it.id !== id);
 
-    return deletedItem
+    return deletedItem;
   }
-};
+}
 
 module.exports = {
   AbstractService
-}
+};

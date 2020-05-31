@@ -4,11 +4,11 @@ const {AbstractService} = require(`./abstract-service`);
 
 class offerService extends AbstractService {
   constructor(offers) {
-    super()
+    super();
     this.setItems(offers);
     this.setTemplateItem({
       comments: []
-    })
+    });
   }
 
   search(query) {

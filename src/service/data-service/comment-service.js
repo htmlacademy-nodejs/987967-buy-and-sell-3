@@ -21,19 +21,19 @@ class CommentService extends AbstractService {
   delete(offer, commentID) {
     this.setItems(offer.comments);
     super.delete(commentID);
-    const updatedOffer = { ...offer, ...{ comments: this.getItems() } };
+    const updatedOffer = {...offer, ...{comments: this.getItems()}};
     return updatedOffer;
   }
 
   create(offer, comment) {
     this.setItems(offer.comments);
     super.create(comment);
-    const updatedOffer = { ...offer, ...{ comments: this.getItems() } };
+    const updatedOffer = {...offer, ...{comments: this.getItems()}};
     return updatedOffer;
   }
 
   update() {
-    throw new Error(`Comment could't be updated`)
+    throw new Error(`Comment could't be updated`);
   }
 }
 
