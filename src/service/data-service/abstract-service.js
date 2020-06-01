@@ -19,6 +19,8 @@ class AbstractService {
   }
 
   getAll() {
+    console.log(123);
+
     return this._items;
   }
 
