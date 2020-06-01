@@ -2,35 +2,51 @@
 
 const chalk = require(`chalk`);
 const express = require(`express`);
-const {offersRouter} = require(`./routes/offers`);
-const {ExitCode, HttpStatusCode, HttpStatusInfo} = require(`../const`);
+const {createAPI} = require(`../api`);
+const {ExitCode, HttpStatusCode, HttpStatusInfo, API_PREFIX} = require(`../const`);
 
 const DEFAULT_PORT = 3000;
 
-module.exports = {
-  name: `--server`,
-  run(portName) {
-    const port = parseInt(portName, 10) || DEFAULT_PORT;
+const createApp = async () => {
+  const app = express();
+  const apiRouter = await createAPI();
 
-    const app = express();
+  app.use(express.json());
+  app.use(API_PREFIX, apiRouter);
 
-    app.use(express.json());
-    app.use(`/offers`, offersRouter);
-    app.use((req, res) => res.status(HttpStatusCode.NOT_FOUND).send(HttpStatusInfo.NOT_FOUND));
-    app.use((err, req, res, next) => {
-      res.status(HttpStatusCode.SERVER_ERROR).send(HttpStatusInfo.SERVER_ERROR);
-      next();
-    });
+  app.use((req, res) => res.status(HttpStatusCode.NOT_FOUND).send(HttpStatusInfo.NOT_FOUND));
 
+  app.use((err, req, res, next) => {
+    res.status(HttpStatusCode.SERVER_ERROR).send(`${HttpStatusInfo.SERVER_ERROR}: ${err}`);
+    next();
+  });
+
+  return app;
+};
+
+const run = async (portName) => {
+  const port = parseInt(portName, 10) || DEFAULT_PORT;
+  const app = await createApp();
+
+  try {
     app.listen(port, (err) => {
       if (err) {
-        console.error(chalk.red(`Error creating server: "${err}"`));
-        process.exit(ExitCode.ERROR);
+        throw new Error(err);
       }
 
       console.info(chalk.green(`Listening port ${port}...`));
     });
-
-    return ExitCode.WORKING;
+  } catch (err) {
+    console.error(chalk.red(`Error creating server: "${err}"`));
+    process.exit(ExitCode.ERROR);
   }
+
+  return ExitCode.WORKING;
+};
+
+
+module.exports = {
+  name: `--server`,
+  run,
+  createServer: createApp,
 };
