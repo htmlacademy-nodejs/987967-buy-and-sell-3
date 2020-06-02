@@ -2,7 +2,7 @@
 
 const packageJson = require(`../../../package.json`);
 const chalk = require(`chalk`);
-const { ExitCode } = require(`../const`);
+const {ExitCode} = require(`../const`);
 
 module.exports = {
   name: `--version`,

@@ -2,11 +2,11 @@
 
 const express = require(`express`);
 const {createAPI} = require(`../api`);
-const { ExitCode, HttpStatusCode, HttpStatusInfo, API_PREFIX, LoggerName } = require(`../const`);
-const { logger, getLogger, LogMessage } = require(`../logger`);
+const {ExitCode, HttpStatusCode, HttpStatusInfo, API_PREFIX, LoggerName} = require(`../const`);
+const {logger, getLogger, LogMessage} = require(`../logger`);
 
 const DEFAULT_PORT = 3000;
-const apiLogger = getLogger({ name: LoggerName.API });
+const apiLogger = getLogger({name: LoggerName.API});
 
 const createApp = async () => {
   const app = express();
@@ -20,7 +20,7 @@ const createApp = async () => {
   app.use(API_PREFIX, apiRouter);
 
   app.use((req, res) => {
-    apiLogger.error(LogMessage.getUnknownRoute(req.originalUrl))
+    apiLogger.error(LogMessage.getUnknownRoute(req.originalUrl));
     res.status(HttpStatusCode.NOT_FOUND).send(HttpStatusInfo.NOT_FOUND);
   });
 

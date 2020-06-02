@@ -2,7 +2,7 @@
 
 const fs = require(`fs`);
 const path = require(`path`);
-const { MOCK_FILE_NAME, ROOT_FOLDER } = require(`./const`);
+const {MOCK_FILE_NAME, ROOT_FOLDER} = require(`./const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -38,7 +38,7 @@ const readContent = async (filename, logger) => {
   } catch (err) {
     if (logger) {
       logger.error(`Can't read file ${filename}: ${err}`);
-    };
+    }
 
     return [];
   }

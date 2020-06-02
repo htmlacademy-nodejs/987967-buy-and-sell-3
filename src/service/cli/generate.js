@@ -11,10 +11,10 @@ const {
 const fs = require(`fs`);
 const chalk = require(`chalk`);
 const {nanoid} = require(`nanoid`);
-const { ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName } = require(`../const`);
-const { getLogger } = require(`../logger`);
+const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName} = require(`../const`);
+const {getLogger} = require(`../logger`);
 
-const utilLogger = getLogger({ name: LoggerName.UTIL });
+const utilLogger = getLogger({name: LoggerName.UTIL});
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;

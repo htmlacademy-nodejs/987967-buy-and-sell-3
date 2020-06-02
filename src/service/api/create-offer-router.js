@@ -1,11 +1,11 @@
 'use strict';
 
-const { HttpStatusCode, LoggerName } = require(`../const`);
-const { findOffer, validateOffer, validateComment } = require(`../middlewares`);
-const { Router } = require(`express`);
-const { getLogger, LogMessage } = require(`../logger`);
+const {HttpStatusCode, LoggerName} = require(`../const`);
+const {findOffer, validateOffer, validateComment} = require(`../middlewares`);
+const {Router} = require(`express`);
+const {getLogger, LogMessage} = require(`../logger`);
 
-const apiLogger = getLogger({ name: LoggerName.API });
+const apiLogger = getLogger({name: LoggerName.API});
 
 const createOfferRouter = (offerService, commentService) => {
   const router = new Router();
@@ -17,7 +17,7 @@ const createOfferRouter = (offerService, commentService) => {
   });
 
   router.get(`/:offerID`, [findOfferMiddleware], (req, res) => {
-    const { offer } = res.locals;
+    const {offer} = res.locals;
     res.status(HttpStatusCode.OK).json(offer);
     apiLogger.info(LogMessage.getEndRequest(HttpStatusCode.OK, req.originalUrl));
   });
@@ -29,27 +29,27 @@ const createOfferRouter = (offerService, commentService) => {
   });
 
   router.delete(`/:offerID`, [findOfferMiddleware], (req, res) => {
-    const { offer } = res.locals;
+    const {offer} = res.locals;
     const deletedOffer = offerService.delete(offer.id);
     res.status(HttpStatusCode.OK).json(deletedOffer);
     apiLogger.info(LogMessage.getEndRequest(HttpStatusCode.OK, req.originalUrl));
   });
 
   router.put(`/:offerID`, [findOfferMiddleware, validateOffer], (req, res) => {
-    const { offer } = res.locals;
-    const updatedOffer = Object.assign({ id: offer.id }, req.body);
+    const {offer} = res.locals;
+    const updatedOffer = Object.assign({id: offer.id}, req.body);
     res.status(HttpStatusCode.OK).json(offerService.update(updatedOffer));
     apiLogger.info(LogMessage.getEndRequest(HttpStatusCode.OK, req.originalUrl));
   });
 
   router.get(`/:offerID/comments`, [findOfferMiddleware], (req, res) => {
-    const { offer } = res.locals;
+    const {offer} = res.locals;
     res.status(HttpStatusCode.OK).json(commentService.getAll(offer));
     apiLogger.info(LogMessage.getEndRequest(HttpStatusCode.OK, req.originalUrl));
   });
 
   router.post(`/:offerID/comments`, [findOfferMiddleware, validateComment], (req, res) => {
-    const { offer } = res.locals;
+    const {offer} = res.locals;
     const comment = req.body;
     const updatedOffer = commentService.create(offer, comment);
 
@@ -58,8 +58,8 @@ const createOfferRouter = (offerService, commentService) => {
   });
 
   router.get(`/:offerID/comments/:commentID`, [findOfferMiddleware], (req, res) => {
-    const { offer } = res.locals;
-    const { commentID } = req.params;
+    const {offer} = res.locals;
+    const {commentID} = req.params;
     const comment = commentService.getOne(offer, commentID);
 
     if (!comment) {
@@ -73,8 +73,8 @@ const createOfferRouter = (offerService, commentService) => {
   });
 
   router.delete(`/:offerID/comments/:commentID`, [findOfferMiddleware], (req, res) => {
-    const { offer } = res.locals;
-    const { commentID } = req.params;
+    const {offer} = res.locals;
+    const {commentID} = req.params;
     const updatedOffer = commentService.delete(offer, commentID);
 
     if (!updatedOffer) {

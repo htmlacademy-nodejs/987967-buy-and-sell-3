@@ -1,8 +1,8 @@
 'use strict';
 
 const path = require(`path`);
-const { LoggerName } = require(`./const`);
-const { getRootFolder } = require(`./utils`);
+const {LoggerName} = require(`./const`);
+const {getRootFolder} = require(`./utils`);
 
 const logFile = path.resolve(getRootFolder(), `src`, `service`, `logs`);
 
@@ -25,7 +25,7 @@ const LogMessage = {
 module.exports = {
   logger,
   getLogger(options = {}) {
-    return logger.child(options)
+    return logger.child(options);
   },
   LogMessage,
-}
+};
