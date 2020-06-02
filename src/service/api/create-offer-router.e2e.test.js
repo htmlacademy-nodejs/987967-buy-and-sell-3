@@ -21,7 +21,6 @@ beforeAll(async () => {
 });
 
 afterAll(() => {
-  console.log(fakeIDs.join(`, `));
   fakeIDs.forEach(async (it) => await request(server).delete(`${ROOT_PATH}/${it}`));
 });
 

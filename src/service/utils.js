@@ -2,8 +2,7 @@
 
 const fs = require(`fs`);
 const path = require(`path`);
-const chalk = require(`chalk`);
-const {MOCK_FILE_NAME, ROOT_FOLDER} = require(`./const`);
+const { MOCK_FILE_NAME, ROOT_FOLDER } = require(`./const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -32,12 +31,15 @@ const getRandomUniqueElements = (array, count) => {
 
 const getRandomBoolean = () => Math.random() > 0.5;
 
-const readContent = async (filename) => {
+const readContent = async (filename, logger) => {
   try {
     const content = await fs.promises.readFile(filename, `utf-8`);
     return content.trim().split(`\n`);
   } catch (err) {
-    console.error(chalk.red(err));
+    if (logger) {
+      logger.error(`Can't read file ${filename}: ${err}`);
+    };
+
     return [];
   }
 };
@@ -72,7 +74,7 @@ const getMockOffers = async () => {
 };
 const getMockTitles = async () => await getMockOffers().map((it) => it.title);
 const getTitleList = (titles) => `<ul>${titles.map((it) => `<li>${it}</li>`).join(`\n`)}</ul>`;
-const getRootFolder = (currentPath) => currentPath.replace(RegExp(`${ROOT_FOLDER}.+`), ROOT_FOLDER);
+const getRootFolder = (currentPath = process.cwd()) => currentPath.replace(RegExp(`${ROOT_FOLDER}.+`), ROOT_FOLDER);
 
 module.exports = {
   getRandomInt,

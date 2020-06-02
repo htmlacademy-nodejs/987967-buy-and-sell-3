@@ -121,8 +121,6 @@ describe(`Test REST "${ROOT_PATH}"`, () => {
 
   it(`should return status 201 if POST method and offer data is valid`, async () => {
     const res = await request(server).post(ROOT_PATH).send(validOffer);
-    console.log(res.text);
-
     expect(res.status).toBe(201);
   });
 

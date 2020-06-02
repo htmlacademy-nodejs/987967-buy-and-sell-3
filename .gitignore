@@ -8,8 +8,9 @@ Thumbs.db
 .vscode
 
 # Вспомогательные файлы
-*.log*
+src/service/logs
 node_modules/
+http-test-request/
 
 # Папка с собранными файлами проекта
 build/
@@ -17,4 +18,4 @@ build/
 # Моки
 mocks.json
 
-http-test-request/
+
