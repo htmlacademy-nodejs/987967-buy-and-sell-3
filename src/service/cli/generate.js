@@ -30,8 +30,8 @@ const OfferType = {
 };
 
 const SumRestrict = {
-  MIN: 1000,
-  MAX: 100000,
+  MIN: 10,
+  MAX: 9000,
 };
 
 const DescriptionLength = {
