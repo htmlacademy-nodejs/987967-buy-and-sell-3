@@ -28,7 +28,7 @@ app.use(`/search`, searchRouter);
 app.use((req, res) => res.status(404).render(`errors/400.pug`));
 app.use((err, req, res, next) => {
   console.log(err);
-  console.log(`${err.msg}: ${err.line}`);
+  console.log(`${err.msg}: ${err.filename}, line: ${err.line}`);
 
   res.status(500).render(`errors/500.pug`);
   next();
