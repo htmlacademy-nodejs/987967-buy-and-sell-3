@@ -1,0 +1,8 @@
+.comment-card
+  .comment-card__header
+    a.comment-card__avatar.avatar(href=userHref)
+      img(src=`img/${userpic}` srcset=`img/${userpicX2} 2x` alt='Аватар пользователя')
+    p.comment-card__author #{userName}
+  .comment-card__content
+    p #{comment}
+  button.comment-card__delete.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;

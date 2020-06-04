@@ -2,7 +2,7 @@
 
 const {Router} = require(`express`);
 const {DataServer} = require(`../data-server`);
-const {adaptCategory, adaptOffer, sortOffersByDate, sortOffersByPopular} = require(`../utils`);
+const {sortOffersByDate, sortOffersByPopular} = require(`../utils`);
 
 const LATEST_COUNT = 8;
 const POPULAR_COUNT = 4;

@@ -7,7 +7,7 @@
       a(href=categoryHref) #{category}
     .ticket-card__header
       h3.ticket-card__title
-        a(href=`/offers/${id}`) #{title}
+        a(href=`/offers${cardType === 'MY_CARD' ? `/edit/` : `/`}${id}`) #{title}
       p.ticket-card__price
         span.js-sum #{cost}
         |  &#x20BD;

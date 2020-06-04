@@ -5,9 +5,9 @@ header.header(class={"header--logged": isLogged === true})
     nav.header__user-menu
       ul.header__list
         li.header__item(class={"header__item--active": activeItem === "tickets"})
-          a(href='my-tickets.html') &Pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&icy;
+          a(href='/my') &Pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&icy;
         li.header__item(class={"header__item--active": activeItem === "comments"})
-          a(href='comments.html') &Kcy;&ocy;&mcy;&mcy;&iecy;&ncy;&tcy;&acy;&rcy;&icy;&icy;
+          a(href='/my/comments') &Kcy;&ocy;&mcy;&mcy;&iecy;&ncy;&tcy;&acy;&rcy;&icy;&icy;
     form.search(method='get' action='#' autocomplete='off')
       input(type='search' name='search' placeholder='Поиск' aria-label='Поиск' value=searchValue)
       .search__icon

@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require(`path`);
+const fs = require(`fs`);
 const {OfferType, CARD_COLORS} = require(`./const`);
 
 const getRandomInt = (min, max) => {
@@ -42,6 +44,21 @@ const adaptOffer = (offer) => {
   return adaptedOffer;
 };
 
+const readContent = async (filename, logger) => {
+  try {
+    const content = await fs.promises.readFile(filename, `utf-8`);
+    return content.trim().split(`\n`);
+  } catch (err) {
+    if (logger) {
+      logger.error(`Can't read file ${filename}: ${err}`);
+    }
+
+    return [];
+  }
+};
+
+const getAllCategories = async () => await readContent(`./data/categories.txt`);
+
 module.exports = {
   getRandomElement,
   getRandomInt,
@@ -49,4 +66,5 @@ module.exports = {
   sortOffersByPopular,
   adaptOffer,
   adaptCategory,
+  getAllCategories,
 };
