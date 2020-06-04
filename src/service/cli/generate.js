@@ -56,6 +56,8 @@ const DataFileName = {
   COMMENT: `comments.txt`,
 };
 
+const generateCategories = (categories) => categories.map((it) => ({id: nanoid(MAX_ID_LENGTH), name: it}));
+
 const generateComments = (data) => {
   const comments = getRandomUniqueElements(data, getRandomInt(CommentLength.MIN, CommentLength.MAX));
   return comments.map((it) => ({
@@ -82,7 +84,7 @@ const createMockFile = async (count) => {
     const data = {
       titles: await readContent(`./data/${DataFileName.TITLE}`, utilLogger),
       descriptions: await readContent(`./data/${DataFileName.DESCRIPTION}`, utilLogger),
-      categories: await readContent(`./data/${DataFileName.CATEGORY}`, utilLogger),
+      categories: generateCategories(await readContent(`./data/${DataFileName.CATEGORY}`, utilLogger)),
       comments: await readContent(`./data/${DataFileName.COMMENT}`, utilLogger),
     };
 

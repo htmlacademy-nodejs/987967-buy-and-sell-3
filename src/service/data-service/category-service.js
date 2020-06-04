@@ -9,15 +9,15 @@ class CategoryService {
     const categoryOffers = {};
 
     this._offers.forEach((it) => {
-      if (categoryOffers[it.category] === undefined) {
-        categoryOffers[it.category] = [it];
+      if (categoryOffers[it.category.id] === undefined) {
+        categoryOffers[it.category.id] = [it];
       } else {
-        categoryOffers[it.category].push(it);
+        categoryOffers[it.category.id].push(it);
       }
     });
 
     const categories = Object.keys(categoryOffers).map((it) => ({
-      name: it,
+      ...categoryOffers[it][0].category,
       offerCount: categoryOffers[it].length,
     }));
 
