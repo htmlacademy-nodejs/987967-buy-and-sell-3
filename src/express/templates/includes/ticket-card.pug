@@ -11,5 +11,8 @@
       p.ticket-card__price
         span.js-sum #{cost}
         |  &#x20BD;
-    .ticket-card__desc
-      p #{description}
+    if cardType === 'DEFAULT'
+      .ticket-card__desc
+        p #{description}
+  if cardType === 'MY_CARD'
+    button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;
