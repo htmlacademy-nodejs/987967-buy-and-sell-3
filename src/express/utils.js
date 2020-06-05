@@ -21,7 +21,7 @@ const sortOffersByPopular = (offers) => {
 
 const sortOffersByDate = (offers) => {
   const sortedOffers = offers.slice();
-  sortedOffers.sort(() => Math.random() - Math.random());
+  sortedOffers.sort((a, b) => a.date - b.date);
   return sortedOffers;
 };
 

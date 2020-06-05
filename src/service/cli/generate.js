@@ -11,7 +11,7 @@ const {
 const fs = require(`fs`);
 const chalk = require(`chalk`);
 const {nanoid} = require(`nanoid`);
-const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName} = require(`../const`);
+const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName, YEAR_MS} = require(`../const`);
 const {getLogger} = require(`../logger`);
 
 const utilLogger = getLogger({name: LoggerName.UTIL});
@@ -49,6 +49,11 @@ const PictureNumber = {
   MAX: 16,
 };
 
+const CreateDateInterval = {
+  MIN: Date.now() - 2 * YEAR_MS,
+  MAX: Date.now(),
+}
+
 const DataFileName = {
   TITLE: `titles.txt`,
   DESCRIPTION: `sentences.txt`,
@@ -73,6 +78,7 @@ const generateOffer = ({titles, descriptions, categories, comments}) => ({
   description: getRandomUniqueElements(descriptions, getRandomInt(DescriptionLength.MIN, DescriptionLength.MAX)).join(`\n`),
   type: getRandomBoolean() ? OfferType.OFFER : OfferType.SALE,
   sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
+  date: getRandomInt(CreateDateInterval.MIN, CreateDateInterval.MAX),
   category: getRandomElement(categories),
   comments: generateComments(comments),
 });
