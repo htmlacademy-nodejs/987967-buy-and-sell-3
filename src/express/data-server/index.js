@@ -52,9 +52,7 @@ class DataServer {
   }
 
   async getUserOffers() {
-    const offers = await this.getOffers();
-    const userOffers = offers.slice(0, getRandomInt(1, Math.floor(offers.length/2 - 1)));
-    return userOffers
+    return await this.getOffers();
   }
 
   async getComments(offerID) {
@@ -64,6 +62,18 @@ class DataServer {
     } catch (err) {
       console.error(`Can't get comments: ${err}`);
       throw new Error(`Can't get comments: ${err}`);
+    };
+
+    return res.data
+  }
+
+  async createOffer(offer) {
+    let res;
+    try {
+      res = await this._api.post(`/offers`, offer);
+    } catch (err) {
+      console.error(`Can't create offer: ${err}`);
+      throw new Error(`Can't create offer: ${err}`);
     };
 
     return res.data

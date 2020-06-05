@@ -14,9 +14,14 @@ module.exports = {
     BAD_REQUEST: 400,
   },
 
-  OfferType: {
+  OfferTypeName: {
     offer: `Куплю`,
     sale: `Продам`
+  },
+
+  OfferType: {
+    sell: `offer`,
+    buy: `sale`,
   },
 
   CARD_COLORS: [

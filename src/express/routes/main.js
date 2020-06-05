@@ -10,34 +10,20 @@ const POPULAR_COUNT = 4;
 const mainRouter = new Router();
 const dataServer = new DataServer();
 
-const getData = async (server) => {
-  let data;
-  try {
-    data = await Promise.all([server.getCategories(), server.getOffers()]);
-  } catch (err) {
-    throw err;
-  }
-
-  return {
-    categories: data[0],
-    offers: data[1]
-  };
-};
-
 mainRouter.get(`/`, async (req, res, next) => {
   let data;
 
   try {
-    data = await getData(dataServer);
+    data = await Promise.all([dataServer.getCategories(), dataServer.getOffers()]);
   } catch (err) {
     next(err);
     return;
   }
 
   res.render(`main.pug`, {
-    categories: data.categories,
-    popularOffers: sortOffersByPopular(data.offers).slice(0, POPULAR_COUNT),
-    latestOffers: sortOffersByDate(data.offers).slice(0, LATEST_COUNT),
+    categories: data[0],
+    popularOffers: sortOffersByPopular(data[1]).slice(0, POPULAR_COUNT),
+    latestOffers: sortOffersByDate(data[1]).slice(0, LATEST_COUNT),
   });
 });
 

@@ -3,28 +3,42 @@
 const { Router } = require(`express`);
 const multer = require(`multer`);
 const { DataServer } = require(`../data-server`);
-const { getAllCategories } = require(`../utils`);
+const { offerToRaw, adaptOffer } = require(`../utils`);
 
 const offersRouter = new Router();
-const upload = multer({ dest: `uploads/` });
+const upload = multer({ dest: `src/express/public/img` });
 const dataServer = new DataServer();
 
 offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
+  const categories = await dataServer.getCategories();
+  const rawOffer = offerToRaw({ ...req.body, file: req.file }, categories);
   
+  try {
+    await dataServer.createOffer(rawOffer);
+  } catch (err) {
+    console.error(`Error creating a new ticket: `);
+
+    const checkedCategories = categories.map(category => ({
+      ...category,
+      checked: rawOffer.categories.some(it => it.id === category.id)
+    }))
+
+    res.render(`new-ticket`, {
+      categories: checkedCategories,
+      buttonName: `Опубликовать`,
+      offer: adaptOffer(rawOffer)
+    });
+    return;
+  }
+
   res.redirect(`/my`);
 });
 
 offersRouter.get(`/add`, async (req, res) => {
-  const allCategories = await getAllCategories();
-  const checkedCategories = allCategories.map(it => ({
-    name: it,
-    checked: false,
-  }));
+  const categories = await dataServer.getCategories();
 
   res.render(`new-ticket`, {
-    categories: checkedCategories,
+    categories: categories,
     buttonName: `Опубликовать`,
     offer: {
       title: ``,
@@ -35,15 +49,6 @@ offersRouter.get(`/add`, async (req, res) => {
 });
 
 offersRouter.get(`/:id`, async (req, res) => {
-  const { id } = req.params;
-  let offer;
-  try {
-    offer = await dataServer.getOffer(id);
-  } catch (err) {
-    res.render(`errors/400.pug`);
-    return
-  };
-
   res.render(`ticket`);
 });
 
@@ -54,17 +59,17 @@ offersRouter.get(`/category/:id`, (req, res) => {
 offersRouter.get(`/edit/:id`, async (req, res) => {
   const { id } = req.params;
   let offer;
+  let categories;
   try {
-    offer = await dataServer.getOffer(id);
+    [offer, categories] = await Promise.all([dataServer.getOffer(id), dataServer.getCategories()]);
   } catch (err) {
     res.render(`errors/400.pug`);
     return
   };
 
-  const allCategories = await getAllCategories();
-  const checkedCategories = allCategories.map(it => ({
-    name: it,
-    checked: offer.category.name === it
+  const checkedCategories = categories.map(category => ({
+    ...category,
+    checked: offer.categories.some(it => it.id === category.id)
   }))
 
   res.render(`ticket-edit`, {

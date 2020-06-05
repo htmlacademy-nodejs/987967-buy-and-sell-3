@@ -1,8 +1,6 @@
 'use strict';
 
-const path = require(`path`);
-const fs = require(`fs`);
-const {OfferType, CARD_COLORS} = require(`./const`);
+const { OfferTypeName, CARD_COLORS, OfferType } = require(`./const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -21,7 +19,7 @@ const sortOffersByPopular = (offers) => {
 
 const sortOffersByDate = (offers) => {
   const sortedOffers = offers.slice();
-  sortedOffers.sort((a, b) => a.date - b.date);
+  sortedOffers.sort((a, b) => b.date - a.date);
   return sortedOffers;
 };
 
@@ -34,30 +32,26 @@ const adaptCategory = (category) => ({
 });
 
 const adaptOffer = (offer) => {
-  const adaptedOffer = {...offer};
+  const adaptedOffer = { ...offer };
 
-  adaptedOffer.category = adaptCategory(adaptedOffer.category);
+  adaptedOffer.categories = offer.categories.map(it => adaptCategory(it));
   adaptedOffer.pictureX2 = offer.picture.replace(/\./, `@2x.`);
-  adaptedOffer.typeName = OfferType[offer.type];
+  adaptedOffer.typeName = OfferTypeName[offer.type];
   adaptedOffer.cardColor = getRandomElement(CARD_COLORS);
 
   return adaptedOffer;
 };
 
-const readContent = async (filename, logger) => {
-  try {
-    const content = await fs.promises.readFile(filename, `utf-8`);
-    return content.trim().split(`\n`);
-  } catch (err) {
-    if (logger) {
-      logger.error(`Can't read file ${filename}: ${err}`);
-    }
-
-    return [];
+const offerToRaw = (offer, categories) => {
+  return {
+    title: offer[`ticket-name`],
+    description: offer.comment,
+    sum: offer.price,
+    type: OfferType[offer.action],
+    categories: offer.category.map(it => categories[it]),
+    picture: offer.file.filename,
   }
 };
-
-const getAllCategories = async () => await readContent(`./data/categories.txt`);
 
 module.exports = {
   getRandomElement,
@@ -66,5 +60,5 @@ module.exports = {
   sortOffersByPopular,
   adaptOffer,
   adaptCategory,
-  getAllCategories,
+  offerToRaw,
 };

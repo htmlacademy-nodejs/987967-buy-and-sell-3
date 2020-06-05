@@ -4,7 +4,8 @@
   .ticket-card__info
     span.ticket-card__label #{type}
     .ticket-card__categories
-      a(href=categoryHref) #{category}
+      each category in categories
+        a(href=category.href) #{category.name}
     .ticket-card__header
       h3.ticket-card__title
         a(href=`/offers${cardType === 'MY_CARD' ? `/edit/` : `/`}${id}`) #{title}
