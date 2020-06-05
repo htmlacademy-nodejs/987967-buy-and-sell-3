@@ -44,6 +44,11 @@ const CommentLength = {
   MAX: 3,
 };
 
+const CategoryLength = {
+  MIN: 1,
+  MAX: 3,
+};
+
 const PictureNumber = {
   MIN: 1,
   MAX: 16,
@@ -79,7 +84,7 @@ const generateOffer = ({titles, descriptions, categories, comments}) => ({
   type: getRandomBoolean() ? OfferType.OFFER : OfferType.SALE,
   sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
   date: getRandomInt(CreateDateInterval.MIN, CreateDateInterval.MAX),
-  category: getRandomElement(categories),
+  categories: getRandomUniqueElements(categories, getRandomInt(CategoryLength.MIN, CategoryLength.MAX)),
   comments: generateComments(comments),
 });
 

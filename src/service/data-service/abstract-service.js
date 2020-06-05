@@ -29,6 +29,7 @@ class AbstractService {
   create(item) {
     const newItem = {
       id: nanoid(MAX_ID_LENGTH),
+      date: Date.now(),
       ...this._templateItem,
       ...item
     };

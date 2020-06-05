@@ -12,10 +12,10 @@ const validOffer = {
   "description": `Это настоящая находка для коллекционера!\nДоставка по всей России Бесплатно!Самовывоз`,
   "type": `sale`,
   "sum": 42788,
-  "category": {
+  "categories": [{
     id: `category-id-1`,
     name: `Ролики и скейтбординг`
-  }
+  }]
 };
 
 const invalidOffer = {
@@ -23,10 +23,10 @@ const invalidOffer = {
   "description": `Это настоящая находка для коллекционера!\nДоставка по всей России Бесплатно!Самовывоз`,
   "type": `sale`,
   "sum": 42788,
-  "category": {
+  "categories": [{
     id: `category-id-1`,
     name: `Ролики и скейтбординг`
-  }
+  }]
 };
 
 const validComment = {
@@ -44,7 +44,10 @@ const mockOffer = {
   description: `description1`,
   type: `sale`,
   sum: 11111,
-  category: `category1`,
+  categories: [{
+    name: `category1`,
+    id: `category-id-1`
+  }],
   comments: [
     {
       "id": `comment-id-1`,

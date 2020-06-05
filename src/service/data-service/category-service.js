@@ -8,20 +8,20 @@ class CategoryService {
   getAll() {
     const categoryOffers = {};
 
-    this._offers.forEach((it) => {
-      if (categoryOffers[it.category.id] === undefined) {
-        categoryOffers[it.category.id] = [it];
-      } else {
-        categoryOffers[it.category.id].push(it);
-      }
+    this._offers.forEach(offer => {
+      offer.categories.forEach(it => {
+        if (categoryOffers[it.id] === undefined) {
+          categoryOffers[it.id] = {
+            ...it,
+            offerCount: 1
+          };
+        } else {
+          categoryOffers[it.id].offerCount++;
+        }
+      })
     });
 
-    const categories = Object.keys(categoryOffers).map((it) => ({
-      ...categoryOffers[it][0].category,
-      offerCount: categoryOffers[it].length,
-    }));
-
-    return categories;
+    return Object.values(categoryOffers);
   }
 }
 
