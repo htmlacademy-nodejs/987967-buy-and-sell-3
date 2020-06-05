@@ -20,9 +20,12 @@ class CommentService extends AbstractService {
 
   delete(offer, commentID) {
     this.setItems(offer.comments);
-    super.delete(commentID);
-    const updatedOffer = {...offer, ...{comments: this.getItems()}};
-    return updatedOffer;
+    if (super.delete(commentID)) {
+      const updatedOffer = {...offer, ...{comments: this.getItems()}};
+      return updatedOffer;
+    }
+
+    return null;
   }
 
   create(offer, comment) {

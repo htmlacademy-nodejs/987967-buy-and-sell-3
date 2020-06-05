@@ -11,7 +11,10 @@ const {
 const fs = require(`fs`);
 const chalk = require(`chalk`);
 const {nanoid} = require(`nanoid`);
-const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH} = require(`../const`);
+const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName} = require(`../const`);
+const {getLogger} = require(`../logger`);
+
+const utilLogger = getLogger({name: LoggerName.UTIL});
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -77,10 +80,10 @@ const generate = (count, data) => Array(count).fill(``).map(() => generateOffer(
 const createMockFile = async (count) => {
   try {
     const data = {
-      titles: await readContent(`./data/${DataFileName.TITLE}`),
-      descriptions: await readContent(`./data/${DataFileName.DESCRIPTION}`),
-      categories: await readContent(`./data/${DataFileName.CATEGORY}`),
-      comments: await readContent(`./data/${DataFileName.COMMENT}`),
+      titles: await readContent(`./data/${DataFileName.TITLE}`, utilLogger),
+      descriptions: await readContent(`./data/${DataFileName.DESCRIPTION}`, utilLogger),
+      categories: await readContent(`./data/${DataFileName.CATEGORY}`, utilLogger),
+      comments: await readContent(`./data/${DataFileName.COMMENT}`, utilLogger),
     };
 
     await fs.promises.writeFile(MOCK_FILE_NAME, JSON.stringify(generate(count, data)));

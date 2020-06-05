@@ -30,5 +30,14 @@ module.exports = {
   API_PREFIX: `/api`,
 
   ROOT_FOLDER: `987967-buy-and-sell-3`,
+
+  LoggerName: {
+    SERVER: `server`,
+    API: `server:api`,
+    GENERATE: `generate`,
+    HELP: `help`,
+    VERSION: `version`,
+    UTIL: `util`,
+  }
 };
 
