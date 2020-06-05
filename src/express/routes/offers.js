@@ -1,11 +1,20 @@
 'use strict';
 
 const { Router } = require(`express`);
+const multer = require(`multer`);
 const { DataServer } = require(`../data-server`);
 const { getAllCategories } = require(`../utils`);
 
 const offersRouter = new Router();
+const upload = multer({ dest: `uploads/` });
 const dataServer = new DataServer();
+
+offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
+  console.log(req.body);
+  console.log(req.file);
+  
+  res.redirect(`/my`);
+});
 
 offersRouter.get(`/add`, async (req, res) => {
   const allCategories = await getAllCategories();
@@ -27,8 +36,9 @@ offersRouter.get(`/add`, async (req, res) => {
 
 offersRouter.get(`/:id`, async (req, res) => {
   const { id } = req.params;
+  let offer;
   try {
-    const offer = await dataServer.getOffer(id);
+    offer = await dataServer.getOffer(id);
   } catch (err) {
     res.render(`errors/400.pug`);
     return
@@ -43,8 +53,9 @@ offersRouter.get(`/category/:id`, (req, res) => {
 
 offersRouter.get(`/edit/:id`, async (req, res) => {
   const { id } = req.params;
+  let offer;
   try {
-    const offer = await dataServer.getOffer(id);
+    offer = await dataServer.getOffer(id);
   } catch (err) {
     res.render(`errors/400.pug`);
     return
