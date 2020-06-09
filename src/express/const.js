@@ -93,5 +93,8 @@ module.exports = {
       ? `must be between 100 and 10000000 rubles` : ``,
   },
 
-  NO_PICTURE: `no-picture.jpg`
+  NO_PICTURE: `no-picture.jpg`,
+
+  LATEST_COUNT: 8,
+  POPULAR_COUNT: 4,
 };

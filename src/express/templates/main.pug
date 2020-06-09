@@ -15,41 +15,19 @@ block content
                 img(src=`img/${category.img}.jpg` srcset=`img/${category.img}@2x.jpg 2x` alt='Иконка категории')
               span.category-tile__label #{category.name} 
                 span.category-tile__qty.js-qty #{category.offerCount}
-    section.tickets-list
-      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ncy;&ocy;&vcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
-      .tickets-list__wrapper
-        .tickets-list__header
-          p.tickets-list__title &Scy;&acy;&mcy;&ocy;&iecy; &scy;&vcy;&iecy;&zhcy;&iecy;&iecy;
-        ul
-          each ticket in latestOffers
-            li.tickets-list__item
-              -var id = ticket.id
-              -var title = ticket.title
-              -var cost = ticket.sum
-              -var description = ticket.description
-              -var categories = ticket.categories
-              -var type = ticket.typeName
-              -var picture = ticket.picture
-              -var pictureX2 = ticket.pictureX2
-              -var color = ticket.cardColor
-              -var cardType = 'DEFAULT'
-              include includes/ticket-card.pug
-    section.tickets-list
-      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ocy;&bcy;&scy;&ucy;&zhcy;&dcy;&acy;&iecy;&mcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
-      .tickets-list__wrapper
-        .tickets-list__header
-          p.tickets-list__title &Scy;&acy;&mcy;&ycy;&iecy; &ocy;&bcy;&scy;&ucy;&zhcy;&dcy;&acy;&iecy;&mcy;&ycy;&iecy;
-        ul
-          each ticket in popularOffers
-            li.tickets-list__item
-              -var id = ticket.id
-              -var title = ticket.title
-              -var cost = ticket.sum
-              -var description = ticket.description
-              -var categories = ticket.categories
-              -var type = ticket.typeName
-              -var picture = ticket.picture
-              -var pictureX2 = ticket.pictureX2
-              -var color = ticket.cardColor
-              -var cardType = 'DEFAULT'
-              include includes/ticket-card.pug
+
+    -var ariaTitle = "Самые новые предложения"
+    -var title = "Самое свежее"
+    -var more = false
+    -var newOfferButton = false
+    -var tickets = latestOffers
+    -var cardType = 'DEFAULT'
+    include includes/ticket-list.pug
+
+    -var ariaTitle = "Самые обсуждаемые предложения"
+    -var title = "Самые обсуждаемые"
+    -var more = false
+    -var newOfferButton = false
+    -var tickets = popularOffers
+    -var cardType = 'DEFAULT'
+    include includes/ticket-list.pug

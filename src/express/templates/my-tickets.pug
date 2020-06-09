@@ -6,24 +6,11 @@ block prepend header
 
 block content
   main.page-content
-    section.tickets-list
-      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ncy;&ocy;&vcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
-      .tickets-list__wrapper
-        .tickets-list__header
-          a.tickets-list__btn.btn.btn--big(href='/offers/add')
-            span &Ncy;&ocy;&vcy;&acy;&yacy; &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
-        ul
-          each ticket in offers
-            li.tickets-list__item.js-card
-              -var id = ticket.id
-              -var title = ticket.title
-              -var cost = ticket.sum
-              -var description = ticket.description
-              -var categories = ticket.categories
-              -var type = ticket.typeName
-              -var picture = ticket.picture
-              -var pictureX2 = ticket.pictureX2
-              -var color = ticket.cardColor
-              -var cardType = 'MY_CARD'
-              include includes/ticket-card.pug
+    -var ariaTitle = "Самые новые предложения"
+    -var title = ""
+    -var more = false
+    -var newOfferButton = true
+    -var tickets = offers
+    -var cardType = 'MY_CARD'
+    include includes/ticket-list.pug
 

@@ -3,9 +3,7 @@
 const {Router} = require(`express`);
 const {DataServer} = require(`../data-server`);
 const {sortOffersByDate, sortOffersByPopular} = require(`../utils`);
-
-const LATEST_COUNT = 8;
-const POPULAR_COUNT = 4;
+const {LATEST_COUNT, POPULAR_COUNT} = require(`../const`);
 
 const mainRouter = new Router();
 const dataServer = new DataServer();

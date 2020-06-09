@@ -1,6 +1,7 @@
 'use strict';
 
 const axios = require(`axios`).default;
+const queryString = require(`querystring`);
 const {TIMEOUT, DATA_SERVER_PORT} = require(`../const`);
 const { ServiceToExpressAdapter } = require(`../data-adapter`);
 
@@ -77,6 +78,26 @@ class DataServer {
     };
 
     return res.data
+  }
+
+  async search(searchValue) {
+    if (!searchValue) {
+      return []
+    };
+
+    const query = queryString.encode({
+      query: searchValue
+    });
+
+    let res;
+    try {
+      res = await this._api.get(`/search?${query}`)
+    } catch (err) {
+      console.error(`Offer search error: ${err}`);
+      throw new Error(`Offer search error: ${err}`);
+    };
+
+    return res.data.map(it => ServiceToExpressAdapter.getOffer(it))
   }
 }
 
