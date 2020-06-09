@@ -3,30 +3,31 @@
 const { Router } = require(`express`);
 const multer = require(`multer`);
 const { DataServer } = require(`../data-server`);
-const { offerToRaw, adaptOffer } = require(`../utils`);
+const { validateTicket } = require(`../utils`);
+const { CATEGORIES } = require(`../const`);
+const { FormToServiceAdapter, ServiceToExpressAdapter } = require(`../data-adapter`);
 
 const offersRouter = new Router();
 const upload = multer({ dest: `src/express/public/img` });
 const dataServer = new DataServer();
 
 offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
-  const categories = await dataServer.getCategories();
-  const rawOffer = offerToRaw({ ...req.body, file: req.file }, categories);
+  const offer = FormToServiceAdapter.getOffer({ ...req.body }, req.file);
   
   try {
-    await dataServer.createOffer(rawOffer);
+    // throw new Error(`123`)
+    await dataServer.createOffer(offer);
   } catch (err) {
-    console.error(`Error creating a new ticket: `);
+    console.error(`Error creating a new ticket: ${err}`);
 
-    const checkedCategories = categories.map(category => ({
-      ...category,
-      checked: rawOffer.categories.some(it => it.id === category.id)
-    }))
+    const ticket = ServiceToExpressAdapter.getOffer(offer);
 
     res.render(`new-ticket`, {
-      categories: checkedCategories,
+      categories: CATEGORIES,
       buttonName: `Опубликовать`,
-      offer: adaptOffer(rawOffer)
+      offer: ticket,
+      errorMessage: `Error creating offer, please try again later`,
+      validateMessage: validateTicket(ticket)
     });
     return;
   }
@@ -35,16 +36,18 @@ offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
 });
 
 offersRouter.get(`/add`, async (req, res) => {
-  const categories = await dataServer.getCategories();
+  const emptyOffer = {
+    title: ``,
+    description: ``,
+    sum: 0,
+    categoryIndexes: [],
+  };
 
   res.render(`new-ticket`, {
-    categories: categories,
+    categories: CATEGORIES,
     buttonName: `Опубликовать`,
-    offer: {
-      title: ``,
-      description: ``,
-      sum: ``,
-    }
+    offer: emptyOffer,
+    validateMessage: validateTicket(emptyOffer),
   });
 });
 
@@ -59,23 +62,18 @@ offersRouter.get(`/category/:id`, (req, res) => {
 offersRouter.get(`/edit/:id`, async (req, res) => {
   const { id } = req.params;
   let offer;
-  let categories;
   try {
-    [offer, categories] = await Promise.all([dataServer.getOffer(id), dataServer.getCategories()]);
+    offer = await dataServer.getOffer(id);
   } catch (err) {
     res.render(`errors/400.pug`);
     return
   };
 
-  const checkedCategories = categories.map(category => ({
-    ...category,
-    checked: offer.categories.some(it => it.id === category.id)
-  }))
-
   res.render(`ticket-edit`, {
     offer,
-    categories: checkedCategories,
+    categories: CATEGORIES,
     buttonName: `Сохранить`,
+    validateMessage: validateTicket(offer)
   });
 });
 

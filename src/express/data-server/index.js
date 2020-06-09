@@ -2,7 +2,7 @@
 
 const axios = require(`axios`).default;
 const {TIMEOUT, DATA_SERVER_PORT} = require(`../const`);
-const {adaptCategory, adaptOffer, getRandomInt} = require(`../utils`);
+const { ServiceToExpressAdapter } = require(`../data-adapter`);
 
 const createAPI = (port) => axios.create({
   baseURL: `http://localhost:${port}/api`,
@@ -24,7 +24,7 @@ class DataServer {
       throw new Error(`Can't get categories: ${err}`);
     };
 
-    return res.data.map(it => adaptCategory(it));
+    return ServiceToExpressAdapter.getCategories(res.data);
   }
 
   async getOffers() {
@@ -36,7 +36,7 @@ class DataServer {
       throw new Error(`Can't get offers: ${err}`);
     };
 
-    return res.data.map(it => adaptOffer(it));
+    return res.data.map(it => ServiceToExpressAdapter.getOffer(it));
   }
 
   async getOffer(id) {
@@ -48,7 +48,7 @@ class DataServer {
       throw new Error(`Can't get offer: ${err}`);
     };
 
-    return adaptOffer(res.data);
+    return ServiceToExpressAdapter.getOffer(res.data);
   }
 
   async getUserOffers() {

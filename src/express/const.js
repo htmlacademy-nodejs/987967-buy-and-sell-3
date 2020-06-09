@@ -42,4 +42,56 @@ module.exports = {
     `color15`,
     `color16`,
   ],
+
+  CATEGORIES: [
+    `Аккордеоны, гармони, баяны`,
+    `Вещи знаменитостей, автографы`,
+    `Грампластинки`,
+    `Домашние растения`,
+    `Комнатные животные`,
+    `Этикетки, бутылки, пробки`,
+  ],
+
+  CategoryProperties: {
+    [`Аккордеоны, гармони, баяны`]: {
+      name: `Аккордеоны, гармони, баяны`,
+      img: `cat`,
+    },
+
+    [`Вещи знаменитостей, автографы`]: {
+      name: `Вещи знаменитостей, автографы`,
+      img: `cat02`,
+    },
+
+    [`Грампластинки`]: {
+      name: `Грампластинки`,
+      img: `cat03`,
+    },
+
+    [`Этикетки, бутылки, пробки`]: {
+      name: `Этикетки, бутылки, пробки`,
+      img: `cat04`,
+    },
+
+    [`Комнатные животные`]: {
+      name: `Комнатные животные`,
+      img: `cat05`,
+    },
+
+    [`Домашние растения`]: {
+      name: `Домашние растения`,
+      img: `cat06`,
+    },
+  },
+
+  ValueCheck: {
+    title: (value) => value.length < 10 || value.length > 100
+      ? `must be between 10 and 100 characters` : ``,
+    description: (value) => value.length < 50 || value.length > 1000
+      ? `must be between 50 and 1000 characters` : ``,
+    sum: (value) => value < 100 || value > 10000000
+      ? `must be between 100 and 10000000 rubles` : ``,
+  },
+
+  NO_PICTURE: `no-picture.jpg`
 };

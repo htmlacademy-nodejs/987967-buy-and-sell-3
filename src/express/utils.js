@@ -1,6 +1,6 @@
 'use strict';
 
-const { OfferTypeName, CARD_COLORS, OfferType } = require(`./const`);
+const { OfferTypeName, CARD_COLORS, OfferType, ValueCheck } = require(`./const`);
 
 const getRandomInt = (min, max) => {
   const minInt = Math.ceil(min);
@@ -48,9 +48,20 @@ const offerToRaw = (offer, categories) => {
     description: offer.comment,
     sum: offer.price,
     type: OfferType[offer.action],
-    categories: offer.category.map(it => categories[it]),
+    categories: Array.isArray(offer.category) ? offer.category.map(it => categories[it]) : [categories[offer.category]],
     picture: offer.file.filename,
   }
+};
+
+const validateTicket = (ticket) => {
+  const validateMessage = {isValid: true};
+  Object.keys(ValueCheck).forEach(it => {
+    const message = ValueCheck[it](ticket[it]);
+    validateMessage[it] = message;
+    validateMessage.isValid = validateMessage.isValid && (message === ``)
+  });
+  
+  return validateMessage
 };
 
 module.exports = {
@@ -58,7 +69,5 @@ module.exports = {
   getRandomInt,
   sortOffersByDate,
   sortOffersByPopular,
-  adaptOffer,
-  adaptCategory,
-  offerToRaw,
+  validateTicket,
 };
