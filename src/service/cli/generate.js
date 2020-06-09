@@ -57,7 +57,7 @@ const PictureNumber = {
 const CreateDateInterval = {
   MIN: Date.now() - 2 * YEAR_MS,
   MAX: Date.now(),
-}
+};
 
 const DataFileName = {
   TITLE: `titles.txt`,

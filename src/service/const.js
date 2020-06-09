@@ -40,6 +40,6 @@ module.exports = {
     UTIL: `util`,
   },
 
-  YEAR_MS: 1000*60*60*24*365,
+  YEAR_MS: 1000 * 60 * 60 * 24 * 365,
 };
 

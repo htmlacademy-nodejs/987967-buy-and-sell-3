@@ -3,7 +3,7 @@
 const axios = require(`axios`).default;
 const queryString = require(`querystring`);
 const {TIMEOUT, DATA_SERVER_PORT} = require(`../const`);
-const { ServiceToExpressAdapter } = require(`../data-adapter`);
+const {ServiceToExpressAdapter} = require(`../data-adapter`);
 
 const createAPI = (port) => axios.create({
   baseURL: `http://localhost:${port}/api`,
@@ -13,7 +13,7 @@ const createAPI = (port) => axios.create({
 
 class DataServer {
   constructor() {
-    this._api = createAPI(DATA_SERVER_PORT)
+    this._api = createAPI(DATA_SERVER_PORT);
   }
 
   async getCategories() {
@@ -23,7 +23,7 @@ class DataServer {
     } catch (err) {
       console.error(`Can't get categories: ${err}`);
       throw new Error(`Can't get categories: ${err}`);
-    };
+    }
 
     return ServiceToExpressAdapter.getCategories(res.data);
   }
@@ -35,9 +35,9 @@ class DataServer {
     } catch (err) {
       console.error(`Can't get offers: ${err}`);
       throw new Error(`Can't get offers: ${err}`);
-    };
+    }
 
-    return res.data.map(it => ServiceToExpressAdapter.getOffer(it));
+    return res.data.map((it) => ServiceToExpressAdapter.getOffer(it));
   }
 
   async getOffer(id) {
@@ -47,7 +47,7 @@ class DataServer {
     } catch (err) {
       console.error(`Can't get offer: ${err}`);
       throw new Error(`Can't get offer: ${err}`);
-    };
+    }
 
     return ServiceToExpressAdapter.getOffer(res.data);
   }
@@ -63,9 +63,9 @@ class DataServer {
     } catch (err) {
       console.error(`Can't get comments: ${err}`);
       throw new Error(`Can't get comments: ${err}`);
-    };
+    }
 
-    return res.data
+    return res.data;
   }
 
   async createOffer(offer) {
@@ -75,15 +75,15 @@ class DataServer {
     } catch (err) {
       console.error(`Can't create offer: ${err}`);
       throw new Error(`Can't create offer: ${err}`);
-    };
+    }
 
-    return res.data
+    return res.data;
   }
 
   async search(searchValue) {
     if (!searchValue) {
-      return []
-    };
+      return [];
+    }
 
     const query = queryString.encode({
       query: searchValue
@@ -91,13 +91,13 @@ class DataServer {
 
     let res;
     try {
-      res = await this._api.get(`/search?${query}`)
+      res = await this._api.get(`/search?${query}`);
     } catch (err) {
       console.error(`Offer search error: ${err}`);
       throw new Error(`Offer search error: ${err}`);
-    };
+    }
 
-    return res.data.map(it => ServiceToExpressAdapter.getOffer(it))
+    return res.data.map((it) => ServiceToExpressAdapter.getOffer(it));
   }
 }
 

@@ -1,9 +1,9 @@
 'use strict';
 
 const {Router} = require(`express`);
-const { DataServer } = require(`../data-server`);
-const { sortOffersByDate } = require(`../utils`);
-const { LATEST_COUNT } = require(`../const`);
+const {DataServer} = require(`../data-server`);
+const {sortOffersByDate} = require(`../utils`);
+const {LATEST_COUNT} = require(`../const`);
 
 const searchRouter = new Router();
 const dataServer = new DataServer();

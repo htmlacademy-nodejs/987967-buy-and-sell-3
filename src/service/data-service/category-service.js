@@ -8,8 +8,8 @@ class CategoryService {
   getAll() {
     const categoryOffers = {};
 
-    this._offers.forEach(offer => {
-      offer.categories.forEach(it => {
+    this._offers.forEach((offer) => {
+      offer.categories.forEach((it) => {
         if (categoryOffers[it.id] === undefined) {
           categoryOffers[it.id] = {
             ...it,
@@ -18,7 +18,7 @@ class CategoryService {
         } else {
           categoryOffers[it.id].offerCount++;
         }
-      })
+      });
     });
 
     return Object.values(categoryOffers);

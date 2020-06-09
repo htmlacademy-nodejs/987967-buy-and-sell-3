@@ -1,19 +1,19 @@
 'use strict';
 
-const { Router } = require(`express`);
+const {Router} = require(`express`);
 const multer = require(`multer`);
-const { DataServer } = require(`../data-server`);
-const { validateTicket } = require(`../utils`);
-const { CATEGORIES } = require(`../const`);
-const { FormToServiceAdapter, ServiceToExpressAdapter } = require(`../data-adapter`);
+const {DataServer} = require(`../data-server`);
+const {validateTicket} = require(`../utils`);
+const {CATEGORIES} = require(`../const`);
+const {FormToServiceAdapter, ServiceToExpressAdapter} = require(`../data-adapter`);
 
 const offersRouter = new Router();
-const upload = multer({ dest: `src/express/public/img` });
+const upload = multer({dest: `src/express/public/img`});
 const dataServer = new DataServer();
 
 offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
-  const offer = FormToServiceAdapter.getOffer({ ...req.body }, req.file);
-  
+  const offer = FormToServiceAdapter.getOffer({...req.body}, req.file);
+
   try {
     // throw new Error(`123`)
     await dataServer.createOffer(offer);
@@ -60,14 +60,14 @@ offersRouter.get(`/category/:id`, (req, res) => {
 });
 
 offersRouter.get(`/edit/:id`, async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params;
   let offer;
   try {
     offer = await dataServer.getOffer(id);
   } catch (err) {
     res.render(`errors/400.pug`);
-    return
-  };
+    return;
+  }
 
   res.render(`ticket-edit`, {
     offer,
