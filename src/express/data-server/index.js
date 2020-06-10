@@ -3,13 +3,16 @@
 const axios = require(`axios`).default;
 const queryString = require(`querystring`);
 const {TIMEOUT, DATA_SERVER_PORT} = require(`../const`);
-const {ServiceToExpressAdapter} = require(`../data-adapter`);
+const { ServiceToExpressAdapter } = require(`../data-adapter`);
+const {getLogger, LogMessage, LoggerName} = require(`../logger`);
 
 const createAPI = (port) => axios.create({
   baseURL: `http://localhost:${port}/api`,
   timeout: TIMEOUT,
   withCredentials: true,
 });
+
+const logger = getLogger(LoggerName.DATA);
 
 class DataServer {
   constructor() {
@@ -21,7 +24,7 @@ class DataServer {
     try {
       res = await this._api.get(`/categories`);
     } catch (err) {
-      console.error(`Can't get categories: ${err}`);
+      logger.error(`Can't get categories: ${err}`);
       throw new Error(`Can't get categories: ${err}`);
     }
 
@@ -33,7 +36,7 @@ class DataServer {
     try {
       res = await this._api.get(`/offers`);
     } catch (err) {
-      console.error(`Can't get offers: ${err}`);
+      logger.error(`Can't get offers: ${err}`);
       throw new Error(`Can't get offers: ${err}`);
     }
 
@@ -45,7 +48,7 @@ class DataServer {
     try {
       res = await this._api.get(`/offers/${id}`);
     } catch (err) {
-      console.error(`Can't get offer: ${err}`);
+      logger.error(`Can't get offer: ${err}`);
       throw new Error(`Can't get offer: ${err}`);
     }
 
@@ -61,7 +64,7 @@ class DataServer {
     try {
       res = await this._api.get(`/offers/${offerID}/comments`);
     } catch (err) {
-      console.error(`Can't get comments: ${err}`);
+      logger.error(`Can't get comments: ${err}`);
       throw new Error(`Can't get comments: ${err}`);
     }
 
@@ -73,7 +76,7 @@ class DataServer {
     try {
       res = await this._api.post(`/offers`, offer);
     } catch (err) {
-      console.error(`Can't create offer: ${err}`);
+      logger.error(`Can't create offer: ${err}`);
       throw new Error(`Can't create offer: ${err}`);
     }
 
@@ -93,7 +96,7 @@ class DataServer {
     try {
       res = await this._api.get(`/search?${query}`);
     } catch (err) {
-      console.error(`Offer search error: ${err}`);
+      logger.error(`Offer search error: ${err}`);
       throw new Error(`Offer search error: ${err}`);
     }
 
