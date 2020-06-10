@@ -2,7 +2,7 @@
 
 const {Router} = require(`express`);
 const {DataServer} = require(`../data-server`);
-const { sortOffersByDate } = require(`../utils`);
+const {sortOffersByDate} = require(`../utils`);
 const {getLogger, LoggerName, LogMessage} = require(`../logger`);
 
 const myRouter = new Router();
@@ -20,7 +20,7 @@ myRouter.get(`/comments`, async (req, res) => {
   const offersWithComments = offers.filter((it) => it.comments.length);
 
   logger.info(LogMessage.getEndRequest(req.url));
-  logger.debug(`Offers with comments count: ${offersWithComments.length}`)
+  logger.debug(`Offers with comments count: ${offersWithComments.length}`);
 
   res.render(`comments`, {
     offers: offersWithComments.slice(0, 3),

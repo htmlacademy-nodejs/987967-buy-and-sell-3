@@ -3,7 +3,7 @@
 const {Router} = require(`express`);
 const {DataServer} = require(`../data-server`);
 const {sortOffersByDate, sortOffersByPopular} = require(`../utils`);
-const { LATEST_COUNT, POPULAR_COUNT } = require(`../const`);
+const {LATEST_COUNT, POPULAR_COUNT} = require(`../const`);
 const {LogMessage, LoggerName, getLogger} = require(`../logger`);
 
 const mainRouter = new Router();
@@ -16,7 +16,7 @@ mainRouter.get(`/`, async (req, res, next) => {
   try {
     data = await Promise.all([dataServer.getCategories(), dataServer.getOffers()]);
   } catch (err) {
-    apiLogger.error(LogMessage.getError(err))
+    apiLogger.error(LogMessage.getError(err));
     next(err);
     return;
   }

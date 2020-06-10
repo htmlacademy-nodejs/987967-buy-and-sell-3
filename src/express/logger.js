@@ -7,7 +7,7 @@ const fs = require(`fs`);
 const logFile = path.resolve(__dirname, `logs`);
 
 if (fs.existsSync(logFile)) {
-  fs.unlinkSync(logFile)
+  fs.unlinkSync(logFile);
 }
 
 const LogMessage = {
@@ -24,7 +24,7 @@ const LoggerName = {
   APP: `app-server`,
   APP_API: `app-server:api`,
   DATA: `data-server,`
-}
+};
 
 const logger = pino({
   name: LoggerName.APP,

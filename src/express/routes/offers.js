@@ -5,7 +5,7 @@ const multer = require(`multer`);
 const {DataServer} = require(`../data-server`);
 const {validateTicket} = require(`../utils`);
 const {CATEGORIES} = require(`../const`);
-const { FormToServiceAdapter, ServiceToExpressAdapter } = require(`../data-adapter`);
+const {FormToServiceAdapter, ServiceToExpressAdapter} = require(`../data-adapter`);
 const {getLogger, LogMessage, LoggerName} = require(`../logger`);
 
 const offersRouter = new Router();
@@ -24,7 +24,7 @@ offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
 
     const ticket = ServiceToExpressAdapter.getOffer(offer);
 
-    logger.info(LogMessage.getEndRequest(req.url))
+    logger.info(LogMessage.getEndRequest(req.url));
     res.render(`new-ticket`, {
       categories: CATEGORIES,
       buttonName: `Опубликовать`,
@@ -35,7 +35,7 @@ offersRouter.post(`/add`, upload.single(`avatar`), async (req, res) => {
     return;
   }
 
-  logger.info(LogMessage.getEndRequest(req.url))
+  logger.info(LogMessage.getEndRequest(req.url));
   res.redirect(`/my`);
 });
 
@@ -47,7 +47,7 @@ offersRouter.get(`/add`, async (req, res) => {
     categoryIndexes: [],
   };
 
-  logger.info(LogMessage.getEndRequest(req.url))
+  logger.info(LogMessage.getEndRequest(req.url));
   res.render(`new-ticket`, {
     categories: CATEGORIES,
     buttonName: `Опубликовать`,
@@ -57,12 +57,12 @@ offersRouter.get(`/add`, async (req, res) => {
 });
 
 offersRouter.get(`/:id`, async (req, res) => {
-  logger.info(LogMessage.getEndRequest(req.url))
+  logger.info(LogMessage.getEndRequest(req.url));
   res.render(`ticket`);
 });
 
 offersRouter.get(`/category/:id`, (req, res) => {
-  logger.info(LogMessage.getEndRequest(req.url))
+  logger.info(LogMessage.getEndRequest(req.url));
   res.render(`category`);
 });
 
@@ -72,12 +72,12 @@ offersRouter.get(`/edit/:id`, async (req, res) => {
   try {
     offer = await dataServer.getOffer(id);
   } catch (err) {
-    logger.error(LogMessage.getError(err))
+    logger.error(LogMessage.getError(err));
     res.render(`errors/400.pug`);
     return;
   }
 
-  logger.info(LogMessage.getEndRequest(req.url))
+  logger.info(LogMessage.getEndRequest(req.url));
   res.render(`ticket-edit`, {
     offer,
     categories: CATEGORIES,

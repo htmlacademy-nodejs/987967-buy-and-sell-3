@@ -3,8 +3,8 @@
 const axios = require(`axios`).default;
 const queryString = require(`querystring`);
 const {TIMEOUT, DATA_SERVER_PORT} = require(`../const`);
-const { ServiceToExpressAdapter } = require(`../data-adapter`);
-const {getLogger, LogMessage, LoggerName} = require(`../logger`);
+const {ServiceToExpressAdapter} = require(`../data-adapter`);
+const {getLogger, LoggerName} = require(`../logger`);
 
 const createAPI = (port) => axios.create({
   baseURL: `http://localhost:${port}/api`,
