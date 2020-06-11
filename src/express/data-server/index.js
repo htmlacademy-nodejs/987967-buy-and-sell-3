@@ -56,7 +56,7 @@ class DataServer {
   }
 
   async getUserOffers() {
-    return await this.getOffers();
+    return this.getOffers();
   }
 
   async getComments(offerID) {
