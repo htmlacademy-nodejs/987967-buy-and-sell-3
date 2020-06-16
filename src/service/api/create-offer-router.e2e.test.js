@@ -13,7 +13,10 @@ const offerMock = {
   "description": `Это настоящая находка для коллекционера!\nДоставка по всей России Бесплатно!Самовывоз`,
   "type": `sale`,
   "sum": 42788,
-  "category": `Ролики и скейтбординг`
+  "category": {
+    id: `category-id-1`,
+    name: `Ролики и скейтбординг`
+  }
 };
 
 beforeAll(async () => {
@@ -51,8 +54,8 @@ describe(`Test ${ROOT_PATH}`, () => {
   it(`should return 400 if POST method and sent offer is not valid`, async () => {
     const beforeResponse = await request(server).get(ROOT_PATH);
     const res = await request(server)
-    .post(`${ROOT_PATH}`)
-    .send({"isValid": false});
+      .post(`${ROOT_PATH}`)
+      .send({"isValid": false});
     const afterResponse = await request(server).get(ROOT_PATH);
 
     expect(res.status).toBe(HttpStatusCode.BAD_REQUEST);

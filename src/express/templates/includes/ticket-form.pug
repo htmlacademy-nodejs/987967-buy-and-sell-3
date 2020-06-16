@@ -1,0 +1,52 @@
+.ticket-form__tile
+  if errorMessage
+    include error-modal.pug
+    
+  form.ticket-form__form.form(action='/offers/add' method='post' enctype='multipart/form-data' autocomplete='off')
+    .ticket-form__avatar-container.js-preview-container(class=offer.picture ? 'uploaded' : '')
+      .ticket-form__avatar.js-preview
+        if offer.picture
+          img(
+            src=`img/${offer.picture}` 
+            alt=''
+            )
+      .ticket-form__field-avatar
+        input#avatar.visually-hidden.js-file-field(type='file' name='avatar')
+        label(for='avatar')
+          span.ticket-form__text-upload &Zcy;&acy;&gcy;&rcy;&ucy;&zcy;&icy;&tcy;&softcy; &fcy;&ocy;&tcy;&ocy;&mldr;
+          span.ticket-form__text-another &Zcy;&acy;&gcy;&rcy;&ucy;&zcy;&icy;&tcy;&softcy; &dcy;&rcy;&ucy;&gcy;&ocy;&iecy; &fcy;&ocy;&tcy;&ocy;&mldr;
+    .ticket-form__content
+      .ticket-form__row
+        .form__field
+          input#ticket-name.js-field(type='text' name='ticket-name' value=offer.title required='')
+          label(for='ticket-name') &Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;
+          span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+          if validateMessage.title !== ''
+            p(style={['font-size']: '0.7rem'}) #{validateMessage.title}
+      .ticket-form__row
+        .form__field
+          textarea#comment-field.js-field(name='comment' cols='30' rows='10' maxlength='400' minlength='50')
+            | #{offer.description}
+          label(for='comment-field') &Ocy;&pcy;&icy;&scy;&acy;&ncy;&icy;&iecy;
+          span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+          if validateMessage.description !== ''
+            p(style={['font-size']: '0.7rem'}) #{validateMessage.description}
+      .ticket-form__row
+        select#category-field.form__select.js-multiple-select(name='category' data-label='Выбрать категорию публикации' multiple='')
+          each category, index in categories
+            option(value=index selected=offer.categoryIndexes.includes(index)) #{category}
+      .ticket-form__row
+        .form__field.form__field--price
+          input#price-field.js-field.js-price(type='number' name='price' min='1' value=offer.sum required='')
+          label(for='price-field') &TScy;&iecy;&ncy;&acy;
+          span &Ocy;&bcy;&yacy;&zcy;&acy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy;&iecy; &pcy;&ocy;&lcy;&iecy;
+          if validateMessage.sum !== ''
+            p(style={['font-size']: '0.7rem'}) #{validateMessage.sum}
+        .form__switch.switch
+          .switch__item
+            input#buy-field.visually-hidden(type='radio' name='action' value='buy' checked=offer.type === 'offer')
+            label.switch__button(for='buy-field') &Kcy;&ucy;&pcy;&lcy;&yucy;
+          .switch__item
+            input#sell-field.visually-hidden(type='radio' name='action' value='sell' checked=offer.type === 'sale')
+            label.switch__button(for='sell-field') &Pcy;&rcy;&ocy;&dcy;&acy;&mcy;
+    button.form__button.btn.btn--medium.js-button(type='submit' disabled=!validateMessage.isValid) #{buttonName}

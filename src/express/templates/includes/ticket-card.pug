@@ -1,0 +1,19 @@
+.ticket-card(class=`ticket-card--${ticket.cardColor}`)
+  .ticket-card__img
+    img(src=`img/${ticket.picture}` alt='Изображение товара')
+  .ticket-card__info
+    span.ticket-card__label #{ticket.typeName}
+    .ticket-card__categories
+      each category in ticket.categories
+        a(href=category.href) #{category.name}
+    .ticket-card__header
+      h3.ticket-card__title
+        a(href=`/offers${cardType === 'MY_CARD' ? `/edit/` : `/`}${id}`) #{ticket.title}
+      p.ticket-card__price
+        span.js-sum #{ticket.sum}
+        |  &#x20BD;
+    if cardType === 'DEFAULT'
+      .ticket-card__desc
+        p #{ticket.description}
+  if cardType === 'MY_CARD'
+    button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;

@@ -2,183 +2,32 @@ extends layout.pug
 
 block prepend header
   -var isLogged = false
-  -var searchValue = "Автомобиль" 
 
 block content
   main.page-content
     section.search-results
       h1.visually-hidden &Rcy;&iecy;&zcy;&ucy;&lcy;&softcy;&tcy;&acy;&tcy;&ycy; &pcy;&ocy;&icy;&scy;&kcy;&acy;
       .search-results__wrapper
-        p.search-results__label
-          | &Ncy;&acy;&jcy;&dcy;&iecy;&ncy;&ocy; 
-          span.js-results 2 &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&icy;
-        ul.search-results__list
-          li.search-results__item
-            .ticket-card.ticket-card--color05
-              .ticket-card__img
-                img(src='img/item05.jpg' srcset='img/item05@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Acy;&vcy;&tcy;&ocy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Lcy;&iecy;&ncy;&dcy; &Rcy;&ocy;&vcy;&iecy;&rcy;
-                  p.ticket-card__price
-                    span.js-sum 900 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
-          li.search-results__item
-            .ticket-card.ticket-card--color16
-              .ticket-card__img
-                img(src='img/item16.jpg' srcset='img/item16@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Acy;&vcy;&tcy;&ocy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &KHcy;&ocy;&ncy;&dcy;&acy;
-                  p.ticket-card__price
-                    span.js-sum 100 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
-    section.tickets-list
-      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ncy;&ocy;&vcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
-      .tickets-list__wrapper
-        .tickets-list__header
-          p.tickets-list__title &Scy;&acy;&mcy;&ocy;&iecy; &scy;&vcy;&iecy;&zhcy;&iecy;&iecy;
-          a.tickets-list__link(href='#') &IEcy;&shchcy;&iecy; 25
-        ul
-          li.tickets-list__item
-            .ticket-card.ticket-card--color01
-              .ticket-card__img
-                img(src='img/item01.jpg' srcset='img/item01@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
-                .ticket-card__categories
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&acy;
-                  p.ticket-card__price
-                    span.js-sum 1000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color02
-              .ticket-card__img
-                img(src='img/item02.jpg' srcset='img/item02@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Mcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;
-                  p.ticket-card__price
-                    span.js-sum 4000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Pcy;&rcy;&ocy;&dcy;&acy;&mcy; &scy;&vcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&icy;&dcy;&iecy;&tcy;&softcy; &icy; &chcy;&icy;&tcy;&acy;&tcy;&softcy; &kcy;&ncy;&icy;&gcy;&icy; &zcy;&icy;&mcy;&ncy;&icy;&mcy;&icy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color03
-              .ticket-card__img
-                img(src='img/item03.jpg' srcset='img/item03@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy;
-                  p.ticket-card__price
-                    span.js-sum 45 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Pcy;&rcy;&ocy;&dcy;&acy;&yucy; &dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy; &vcy;&nbsp;&pcy;&rcy;&iecy;&kcy;&rcy;&acy;&scy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &khcy;&ocy;&dcy;&yacy;&tcy; &dcy;&ocy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color04
-              .ticket-card__img
-                img(src='img/item04.jpg' srcset='img/item04@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
-                .ticket-card__categories
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&acy;
-                  p.ticket-card__price
-                    span.js-sum 2000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &vcy;&ocy;&tcy; &tcy;&acy;&kcy;&ucy;&yucy; &icy;&tcy;&acy;&lcy;&softcy;&yacy;&ncy;&scy;&kcy;&ucy;&yucy; &kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&ucy;, &mcy;&ocy;&zhcy;&ncy;&ocy; &lcy;&yucy;&bcy;&ocy;&jcy; &fcy;&icy;&rcy;&mcy;&ycy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color05
-              .ticket-card__img
-                img(src='img/item05.jpg' srcset='img/item05@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Acy;&vcy;&tcy;&ocy;
-                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Lcy;&iecy;&ncy;&dcy; &Rcy;&ocy;&vcy;&iecy;&rcy;
-                  p.ticket-card__price
-                    span.js-sum 900 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&ucy; &zcy;&iecy;&lcy;&iecy;&ncy;&ucy;&yucy; &vcy; &khcy;&ocy;&rcy;&ocy;&shcy;&iecy;&mcy; &zcy;&iecy;&lcy;&iecy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &bcy;&ucy;&dcy;&ucy; &pcy;&ocy;&lcy;&icy;&vcy;&acy;&tcy;&softcy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color06
-              .ticket-card__img
-                img(src='img/item06.jpg' srcset='img/item06@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') Ableton
-                  p.ticket-card__price
-                    span.js-sum 88 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Pcy;&rcy;&ocy;&dcy;&acy;&mcy; &scy;&vcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;, &chcy;&tcy;&ocy;&bcy;&ycy; &scy;&icy;&dcy;&iecy;&tcy;&softcy; &icy; &chcy;&icy;&tcy;&acy;&tcy;&softcy; &kcy;&ncy;&icy;&gcy;&icy; &zcy;&icy;&mcy;&ncy;&icy;&mcy;&icy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color07
-              .ticket-card__img
-                img(src='img/item07.jpg' srcset='img/item07@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Scy;&pcy;&ocy;&rcy;&tcy; &icy; &ocy;&tcy;&dcy;&ycy;&khcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Dcy;&ocy;&scy;&kcy;&acy;
-                  p.ticket-card__price
-                    span.js-sum 55 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Pcy;&rcy;&ocy;&dcy;&acy;&yucy; &dcy;&iecy;&dcy;&ucy;&shcy;&kcy;&icy;&ncy;&ycy; &chcy;&acy;&scy;&ycy; &vcy;&nbsp;&pcy;&rcy;&iecy;&kcy;&rcy;&acy;&scy;&ncy;&ocy;&mcy; &scy;&ocy;&scy;&tcy;&ocy;&yacy;&ncy;&icy;&icy;, &khcy;&ocy;&dcy;&yacy;&tcy; &dcy;&ocy;...
-          li.tickets-list__item
-            .ticket-card.ticket-card--color08
-              .ticket-card__img
-                img(src='img/item08.jpg' srcset='img/item08@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
-                .ticket-card__categories
-                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Fcy;&ocy;&tcy;&icy;&kcy; Canon
-                  p.ticket-card__price
-                    span.js-sum 32 000
-                    |  &#x20BD;
-                .ticket-card__desc
-                  p &Kcy;&ucy;&pcy;&lcy;&yucy; &vcy;&ocy;&tcy; &tcy;&acy;&kcy;&ucy;&yucy; &icy;&tcy;&acy;&lcy;&softcy;&yacy;&ncy;&scy;&kcy;&ucy;&yucy; &kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&ucy;, &mcy;&ocy;&zhcy;&ncy;&ocy; &lcy;&yucy;&bcy;&ocy;&jcy; &fcy;&icy;&rcy;&mcy;&ycy;...
+        if searchResult.length
+          p.search-results__label
+            | &Ncy;&acy;&jcy;&dcy;&iecy;&ncy;&ocy; 
+            span.js-results #{searchResult.length} &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&icy;
+          ul.search-results__list
+            each ticket in searchResult
+              li.search-results__item
+                -var cardType = "DEFAULT"
+                include includes/ticket-card.pug
+        else
+          .search-results__message
+            p
+              | &Ncy;&iecy; &ncy;&acy;&jcy;&dcy;&iecy;&ncy;&ocy; 
+              br
+              | &ncy;&icy;&nbsp;&ocy;&dcy;&ncy;&ocy;&jcy; &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&icy;
+    
+    -var ariaTitle = "Самые новые предложения"
+    -var title = "Самое свежее"
+    -var more = true
+    -var newOfferButton = false
+    -var tickets = latestOffers
+    -var cardType = 'DEFAULT'
+    include includes/ticket-list.pug

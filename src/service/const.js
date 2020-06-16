@@ -38,6 +38,8 @@ module.exports = {
     HELP: `help`,
     VERSION: `version`,
     UTIL: `util`,
-  }
+  },
+
+  YEAR_MS: 1000 * 60 * 60 * 24 * 365,
 };
 

@@ -4,7 +4,7 @@ const {HttpStatusCode, LoggerName} = require(`../const`);
 const {getLogger, LogMessage} = require(`../logger`);
 
 const apiLogger = getLogger({name: LoggerName.API});
-const REQUIRED_FIELD = [`title`, `picture`, `description`, `type`, `sum`, `category`];
+const REQUIRED_FIELD = [`title`, `picture`, `description`, `type`, `sum`, `categories`];
 
 const validateOffer = (req, res, next) => {
   const offer = req.body;

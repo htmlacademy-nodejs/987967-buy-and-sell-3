@@ -1,0 +1,15 @@
+section.tickets-list
+  h2.visually-hidden #{ariaTitle}
+  .tickets-list__wrapper
+    .tickets-list__header
+      if title 
+        p.tickets-list__title #{title}
+        if more
+          a.tickets-list__link(href='#') &IEcy;&shchcy;&iecy; 25
+      if newOfferButton
+        a.tickets-list__btn.btn.btn--big(href='/offers/add') 
+          span &Ncy;&ocy;&vcy;&acy;&yacy; &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+    ul
+      each ticket in tickets
+        li.tickets-list__item
+          include ticket-card.pug

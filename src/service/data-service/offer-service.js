@@ -7,7 +7,7 @@ class offerService extends AbstractService {
     super();
     this.setItems(offers);
     this.setTemplateItem({
-      comments: []
+      comments: [],
     });
   }
 

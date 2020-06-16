@@ -6,85 +6,11 @@ block prepend header
 
 block content
   main.page-content
-    section.tickets-list
-      h2.visually-hidden &Scy;&acy;&mcy;&ycy;&iecy; &ncy;&ocy;&vcy;&ycy;&iecy; &pcy;&rcy;&iecy;&dcy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&yacy;
-      .tickets-list__wrapper
-        .tickets-list__header
-          a.tickets-list__btn.btn.btn--big(href='#')
-            span &Ncy;&ocy;&vcy;&acy;&yacy; &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
-        ul
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color06
-              .ticket-card__img
-                img(src='img/item06.jpg' srcset='img/item06@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') Ableton
-                  p.ticket-card__price
-                    span.js-sum 88 000
-                    |  &#x20BD;
-              button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color10
-              .ticket-card__img
-                img(src='img/item10.jpg' srcset='img/item10@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Pcy;&Rcy;&Ocy;&Dcy;&Acy;&Mcy;
-                .ticket-card__categories
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Mcy;&ocy;&iecy; &scy;&tcy;&acy;&rcy;&ocy;&iecy; &kcy;&rcy;&iecy;&scy;&lcy;&ocy;
-                  p.ticket-card__price
-                    span.js-sum 4000
-                    |  &#x20BD;
-              button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color04
-              .ticket-card__img
-                img(src='img/item04.jpg' srcset='img/item04@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
-                .ticket-card__categories
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Kcy;&ocy;&fcy;&iecy;&vcy;&acy;&rcy;&kcy;&acy;
-                  p.ticket-card__price
-                    span.js-sum 2000
-                    |  &#x20BD;
-              button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color08
-              .ticket-card__img
-                img(src='img/item08.jpg' srcset='img/item08@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
-                .ticket-card__categories
-                  a(href='#') &Ecy;&Lcy;&IEcy;&Kcy;&Tcy;&Rcy;&Ocy;&Ncy;&Icy;&Kcy;&Acy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Fcy;&ocy;&tcy;&icy;&kcy; Canon
-                  p.ticket-card__price
-                    span.js-sum 32 000
-                    |  &#x20BD;
-              button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;
-          li.tickets-list__item.js-card
-            .ticket-card.ticket-card--color01
-              .ticket-card__img
-                img(src='img/item01.jpg' srcset='img/item01@2x.jpg 2x' alt='Изображение товара')
-              .ticket-card__info
-                span.ticket-card__label &Kcy;&ucy;&pcy;&lcy;&yucy;
-                .ticket-card__categories
-                  a(href='#') &Dcy;&ocy;&mcy;
-                .ticket-card__header
-                  h3.ticket-card__title
-                    a(href='#') &Mcy;&ocy;&ncy;&scy;&tcy;&iecy;&rcy;&acy;
-                  p.ticket-card__price
-                    span.js-sum 1000
-                    |  &#x20BD;
-              button.ticket-card__del.js-delete(type='button') &Ucy;&dcy;&acy;&lcy;&icy;&tcy;&softcy;
+    -var ariaTitle = "Самые новые предложения"
+    -var title = ""
+    -var more = false
+    -var newOfferButton = true
+    -var tickets = offers
+    -var cardType = 'MY_CARD'
+    include includes/ticket-list.pug
+

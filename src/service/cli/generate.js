@@ -11,7 +11,7 @@ const {
 const fs = require(`fs`);
 const chalk = require(`chalk`);
 const {nanoid} = require(`nanoid`);
-const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName} = require(`../const`);
+const {ExitCode, MOCK_FILE_NAME, MAX_ID_LENGTH, LoggerName, YEAR_MS} = require(`../const`);
 const {getLogger} = require(`../logger`);
 
 const utilLogger = getLogger({name: LoggerName.UTIL});
@@ -30,8 +30,8 @@ const OfferType = {
 };
 
 const SumRestrict = {
-  MIN: 1000,
-  MAX: 100000,
+  MIN: 10,
+  MAX: 9000,
 };
 
 const DescriptionLength = {
@@ -44,9 +44,19 @@ const CommentLength = {
   MAX: 3,
 };
 
+const CategoryLength = {
+  MIN: 1,
+  MAX: 3,
+};
+
 const PictureNumber = {
   MIN: 1,
   MAX: 16,
+};
+
+const CreateDateInterval = {
+  MIN: Date.now() - 2 * YEAR_MS,
+  MAX: Date.now(),
 };
 
 const DataFileName = {
@@ -55,6 +65,8 @@ const DataFileName = {
   CATEGORY: `categories.txt`,
   COMMENT: `comments.txt`,
 };
+
+const generateCategories = (categories) => categories.map((it) => ({id: nanoid(MAX_ID_LENGTH), name: it}));
 
 const generateComments = (data) => {
   const comments = getRandomUniqueElements(data, getRandomInt(CommentLength.MIN, CommentLength.MAX));
@@ -71,7 +83,8 @@ const generateOffer = ({titles, descriptions, categories, comments}) => ({
   description: getRandomUniqueElements(descriptions, getRandomInt(DescriptionLength.MIN, DescriptionLength.MAX)).join(`\n`),
   type: getRandomBoolean() ? OfferType.OFFER : OfferType.SALE,
   sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
-  category: getRandomElement(categories),
+  date: getRandomInt(CreateDateInterval.MIN, CreateDateInterval.MAX),
+  categories: getRandomUniqueElements(categories, getRandomInt(CategoryLength.MIN, CategoryLength.MAX)),
   comments: generateComments(comments),
 });
 
@@ -82,7 +95,7 @@ const createMockFile = async (count) => {
     const data = {
       titles: await readContent(`./data/${DataFileName.TITLE}`, utilLogger),
       descriptions: await readContent(`./data/${DataFileName.DESCRIPTION}`, utilLogger),
-      categories: await readContent(`./data/${DataFileName.CATEGORY}`, utilLogger),
+      categories: generateCategories(await readContent(`./data/${DataFileName.CATEGORY}`, utilLogger)),
       comments: await readContent(`./data/${DataFileName.COMMENT}`, utilLogger),
     };
 
